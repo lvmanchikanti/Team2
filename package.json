@@ -1,19 +1,26 @@
 {
-  "name": "UFX",
-  "version": "1.0.0",
-  "description": "Routing server-side requests using ExpressJS",
-  "main": "server.js",
-  "author": "Medhir Bhargava",
-  "license": "MIT",
-  "dependencies": {
-    "body-parser": "^1.18.3",
-    "express": "^4.16.3",
-    "mongoose": "^4.2.9",
-    "morgan": "^1.6.1",
-    "request": "^2.67.0"
-  },
-  "devDependencies": {
-    "should": "^7.1.1",
-    "supertest": "^1.2.0"
-  }
+    "name": "mean-stack-registration-login-example",
+    "version": "1.0.0",
+    "description": "MEAN Stack User Registration and Login Example Application",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/cornflourblue/mean-stack-registration-login-example.git"
+    },
+    "dependencies": {
+        "bcryptjs": "^2.1.0",
+        "body-parser": "^1.18.3",
+        "ejs": "^2.3.3",
+        "express": "^4.16.4",
+        "express-jwt": "^3.4.0",
+        "express-session": "^1.15.6",
+        "jsonwebtoken": "^5.0.2",
+        "lodash": "^3.10.0",
+        //"mongodb": "^2.1.16",
+        "mongodb": "*",
+        "mongoskin": "^2.1.0",
+        "q": "^1.4.1",
+        "request": "^2.58.0",
+        "rootpath": "^0.1.2"
+    },
+    "license": "MIT"
 }
