@@ -67,13 +67,23 @@ function create(userParam) {
                 // username already exists
                 deferred.reject('Username "' + userParam.username + '" is already taken');
             } else {
-                createUser();
+                matchPasswords();
             }
         });
+
+    function matchPasswords() {    
+        if(userParam.password === userParam.retypePassword) {
+            createUser();
+        }
+        else {
+            deferred.reject('Passwords do not match');
+        }
+    }
 
     function createUser() {
         // create a user listing
         var user = new User(userParam);
+        //var user = _.omit(userParam, 'retypePassword');
 
         // add hashed password to user object
         user.password = bcrypt.hashSync(userParam.password, 10);
