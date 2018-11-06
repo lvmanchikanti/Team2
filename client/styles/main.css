@@ -1,0 +1,30 @@
+.linkWithImageIcon{
+
+    Display:inline-block;
+}
+.MyLink{
+  Background:#FF3300;
+  width:200px;
+  height:70px;
+  vertical-align:top;
+  display:inline-block; font-weight:bold;
+}
+
+.MyLinkText{
+  /*---The margin depends on how the image size is ---*/
+  display:inline-block; margin-top:5px;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+img.resize {
+  max-width:50%;
+  max-height:50%;
+}
