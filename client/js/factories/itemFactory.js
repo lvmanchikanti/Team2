@@ -1,4 +1,4 @@
-angular.module('listings', []).factory('Listings', function($http) {
+angular.module('items', []).factory('Items', function($http) {
     var methods = {
       getAll: function() {
         return $http.get('http://localhost:3000/buying');
@@ -10,11 +10,6 @@ angular.module('listings', []).factory('Listings', function($http) {
 
       getSelling: function() {
         return $http.get('http://localhost:3000/selling');
-      },
-
-      getCurrentSelling: function(id) {
-        console.log("here1");
-        return $http.get('http://localhost:3000/selling/:id', id);
       },
 
       createSelling: function(listing) {

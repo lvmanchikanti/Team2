@@ -1,69 +1,59 @@
-angular.module('listings').controller('ItemController', ['$scope', 'Listings',
-  function($scope, Listings) {
-    /* Get all the listings, then bind it to the scope */
+angular.module('items').controller('ItemController', ['$scope', 'Items', 
+  function($scope, Items) {
+    /* Get all the items, then bind it to the scope */
 
-    Listings.getAll().then(function(response) {
-      $scope.listings = response.data;
+    Items.getAll().then(function(response) {
+      $scope.items = response.data;
     }, function(error) {
-      console.log('Unable to retrieve listings:', error);
+      console.log('Unable to retrieve items:', error);
     });
 
-    $scope.sellingInfo = undefined;
-
-    Listings.getSelling().then(function(response) {
-      $scope.listings = response.data;
+    Items.getSelling().then(function(response) {
+      $scope.items = response.data;
     }, function(error) {
-      console.log('Unable to retrieve selling listings:', error);
+      console.log('Unable to retrieve selling items:', error);
     });
 
-    $scope.getCurrentSelling = function(id) {
+    $scope.setCondition = function(condition) {
+      //setting the location from dropdown
+      $scope.newItem.condition = condition;
+      $scope.items.push($scope.newItem.condition);
+    }
 
-      Listings.getCurrentSelling(id).then(function(response, err) {
-        if(err)
-        {
-          $scope.errorMessage = "Error. Listing not found";
-          console.log('Listing not found', err);
-        }
-        res.send("HELLO");
-        $scope.sellingInfo = response.data;
-        for (var i = 0; i < $scope.listings.length; i++){
-          if($scope.listings[i]._id == id){
-            $scope.sellingInfo = $scope.listings[i];
-          }
-        }
-
-      });
-    };
+    $scope.setLocation = function(location) {
+      //setting the location from dropdown
+      $scope.newItem.location = location;
+      $scope.items.push($scope.newItem.location);
+    }
 
     $scope.saveBuying = function() {
-      $scope.listings.push($scope.newListing);
+      $scope.items.push($scope.newItem);
 
-      Listings.createBuying($scope.newListing).then(function(err)
+      Items.createBuying($scope.newItem).then(function(err)
       {
-        $scope.newListing = {};
-
         if(err)
         {
           $scope.errorMessage = "Error. Listing not successfully added";
           console.log('Unable to add listing', err);
         }
+
+        $scope.newItem = {};
 
       });
     };
 
     $scope.saveSelling = function() {
-      $scope.listings.push($scope.newListing);
+      $scope.items.push($scope.newItem);
 
-      Listings.createSelling($scope.newListing).then(function(err)
+      Items.createSelling($scope.newItem).then(function(err)
       {
-        $scope.newListing = {};
-
         if(err)
         {
           $scope.errorMessage = "Error. Listing not successfully added";
           console.log('Unable to add listing', err);
         }
 
+        $scope.newItem = {};
 
       });
     };

@@ -1,24 +1,24 @@
-var selling = require('../controllers/selling.server.controller.js'),
+var buying = require('../controllers/buyingServerController.js'),
     express = require('express'),
     router = express.Router();
 
     //List things that are being sold
     router.route('/')
-      .get(selling.listAll)
-      .post(selling.create);
+      .get(buying.listAll)
+      .post(buying.create);
 
     //Navigate to userDashboard then click create listing
     // router.route('/postListing')
-    //   .post(selling.create);
+    //   .post(buying.create);
 
     //If listing is found perform the following
     router.route('/:id')
-      .get(selling.read);
-//      .put(selling.update);
-//       .delete(selling.delete);
+      .get(buying.read)
+      .put(buying.update);
+      // .delete(buying.delete);
 
       //Find whether the listing is in the inventory
-    //  router.param('itemId', selling.listingByID);
+    //  router.param('itemId', buying.listingByID);
 
      /******* exports.listingByID = function(req, res, next, id) {
        Listing.findById(id).exec(function(err, listing) {
@@ -31,7 +31,5 @@ var selling = require('../controllers/selling.server.controller.js'),
        });
      };
      ********/
-
-     router.param('id', selling.listingByID);
 
     module.exports = router;
