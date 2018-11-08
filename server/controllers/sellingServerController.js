@@ -26,35 +26,10 @@ exports.create = function(req, res) {
     });
   }
 
-  exports.getSelling = function(req,res){
-    Selling.find({}, function(err, data){
-        res.json(data);
-    })
-  };
-
-  exports.getCurrentItem = function(req,res){
-    console.log('curr item ' + JSON.stringify(req.selling));
-    res.json(req.selling);
-    // User.findOne( {username: req.body.username}, {password: 0}, function(err, user){
-    //     if (err){
-    //         console.log(err);
-    //         return res.status(400).send(err)
-    //     }
-
-    //     if(!user){
-    //         console.log('user not found');
-    //         return res.status(404).send('user not found')
-    //     }
-
-    //     return res.status(200).send(user)
-    //     }
-    // );
-
-};
-
   //gets current selling item
   exports.read = function(req, res){
-      res.json(req.selling);
+    console.log('curr item ' + JSON.stringify(req.selling));
+    res.json(req.selling);
   }
 
   //updates selling item
