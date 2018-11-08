@@ -3,19 +3,16 @@ var path = require('path'),
     mongoose = require('mongoose'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
-    config = require('./config');
-<<<<<<< HEAD
-    buyingRouter = require('../routes/buying.server.routes.js');
-    sellingRouter = require('../routes/selling.server.routes.js')
+    config = require('./config'),
 
-=======
-    buyingRouter = require('../routes/buyingServerRoutes.js');
-    sellingRouter = require('../routes/sellingServerRoutes.js')
-    userRouter = require('../routes/userServerRoutes.js');
-    loginRouter = require('../routes/loginServerRoutes.js');
+    buyingRouter = require('../routes/buyingServerRoutes.js'),
+    sellingRouter = require('../routes/sellingServerRoutes.js'),
+    userRouter = require('../routes/userServerRoutes.js'),
+    loginRouter = require('../routes/loginServerRoutes.js'),
     signupRouter = require('../routes/signupServerRoutes.js');
-    
->>>>>>> 96416eac294f1edffccecfa1168a8da576a51633
+
+
+
 module.exports.init = function() {
   //connect to database
   mongoose.connect(config.db.uri);
@@ -26,13 +23,10 @@ module.exports.init = function() {
   //enable request logging for development debugging
   app.use(morgan('dev'));
 
-<<<<<<< HEAD
   //body parsing middleware
-=======
-  //body parsing middleware 
+  //body parsing middleware
   // app.use(bodyParser.urlencoded({extended: true}));
 
->>>>>>> 96416eac294f1edffccecfa1168a8da576a51633
   app.use(bodyParser.json());
 
   app.set('view engine', 'ejs');
@@ -58,16 +52,14 @@ module.exports.init = function() {
   app.use('/buying', buyingRouter);
   app.use('/selling', sellingRouter);
 
-<<<<<<< HEAD
   /**TODO
   Go to homepage for all routes not specified */
   // app.get('/', function(req,res){
   //   res.redirect('/html/index.html');
-=======
-  /**TODO 
-  Go to homepage for all routes not specified */ 
+  /**TODO
+  Go to homepage for all routes not specified */
 
-  
+
 
   // app.use('/user', userRouter);
 
@@ -75,7 +67,7 @@ module.exports.init = function() {
 
   // console.log('in express');
   app.use('/login/auth', loginRouter);
-  
+
   app.use('/account', userRouter);
 
   // app.use('/account/update', userRouter);
@@ -83,13 +75,12 @@ module.exports.init = function() {
 
 
 
-  /**TODO 
-  Go to homepage for all routes not specified */ 
+  /**TODO
+  Go to homepage for all routes not specified */
   // app.all('/', function(req,res){
   //   // res.sendFile('/Users/cynthiamo/ufx/loginTest2/client/js/html/testLogin.html');
   //   // res.sendFile("/client/html/loginTest.html", {"root": __dirname});
 
->>>>>>> 96416eac294f1edffccecfa1168a8da576a51633
   // });
 
   app.all('/*', function(req, res){
@@ -100,8 +91,5 @@ module.exports.init = function() {
   // app.use(express.static(__dirname + "/client"));
 
   return app;
-<<<<<<< HEAD
+
 };
-=======
-};  
->>>>>>> 96416eac294f1edffccecfa1168a8da576a51633

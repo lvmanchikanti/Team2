@@ -4,7 +4,8 @@ angular.module('items', []);
 
 
 /* register the application and inject all the necessary dependencies */
-var app = angular.module('ufxAppItem', ['items']);
+ var app = angular.module('ufxApp', ['items']);
 
 
-var userApp = angular.module('ufxApp', ['user']);
+
+// var userApp = angular.module('ufxApp', ['user']);

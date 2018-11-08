@@ -1,12 +1,26 @@
 <html>
 <!-- Font Awesome Icon Library -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <body ng-app="directoryApp">
+    <body ng-app="ufxApp">
         <div ng-controller="ItemController">
             <div style="border-bottom:1px solid #000;">
               <div align = "left"><h2>UFX by GLACKR</h2></div>
               <div align = "right">Dave Small</div>
             </div>
+
+            <div ng-repeat="items in items | filter: query" ng-click="getCurrentItem($index)">
+              <a ng-href="http://localhost:3000/selling/{{items._id}}"> {{items._id}} </a>
+              <a ng-href="http://localhost:3000/selling/{{items._id}}"> {{items.title}} </a>
+              <a ng-href="http://localhost:3000/selling/{{items._id}}"> {{items.price}} </a>
+
+            </div>
+
+            <div ng-click="getCurrentItem()">
+              <a ng-href="http://localhost:3000/selling/{{items._id}}">
+                <button type="button">item info</button>
+              </a>
+            </div>
+
                 <!-- <button class="btn btn-primary" ng-click="getCurrentBuying($id)">Find Buying Listing</button> -->
 
                 <!-- <p><a href="/listing.html">Redirect</a></p> -->
@@ -141,11 +155,11 @@
 
             <div class="product">
               <body>
-                    <h2 align="right"> <img class="shiftleft" id="side" src="iphone4side.jpg" alt="side" width="200" height="200" style="float: left;" >
-                    <img id="frontback" src="iphone4frontback.png" alt="frontback" width="200" height="200" style="float: left;" >
-                    <img id="buttons" src="iphone4buttons.jpg" alt="buttons" width="200" height="200" style="float: left;" >
+                    <h2 align="right"> <img class="shiftleft" id="side" src="images/iphone4side.jpg" alt="side" width="200" height="200" style="float: left;" >
+                    <img id="frontback" src="images/phone4frontback.png" alt="frontback" width="200" height="200" style="float: left;" >
+                    <img id="buttons" src="images/iphone4buttons.jpg" alt="buttons" width="200" height="200" style="float: left;" >
                       <h3 class="shiftright">
-                        IPhone 4
+                        {{itemInfo.name}}
                         <h4 class="shiftright">
                           Price: 125.00 <br>
                           Selling <br>
@@ -233,9 +247,9 @@
 
 
         <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
-        <script src="js/app.js"></script>
-        <script src="js/factories/itemFactory.js"></script>
-        <script src="js/controllers/itemController.js"></script>
+        <script src="../app.js"></script>
+        <script src="..factories/itemFactory.js"></script>
+        <script src="../controllers/itemController.js"></script>
 
     </body>
 </html>

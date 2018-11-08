@@ -4,7 +4,7 @@ var selling = require('../controllers/sellingServerController.js'),
 
     //List things that are being sold
     router.route('/')
-      .get(selling.listAll)
+      .get(selling.getSelling)
       .post(selling.create);
 
     //Navigate to userDashboard then click create listing
@@ -12,8 +12,8 @@ var selling = require('../controllers/sellingServerController.js'),
     //   .post(selling.create);
 
     //If listing is found perform the following
-    router.route('/:id')
-      .get(selling.read);
+    router.route('/:_id')
+      .get(selling.getCurrentItem);
 //      .put(selling.update);
 //       .delete(selling.delete);
 
@@ -32,6 +32,6 @@ var selling = require('../controllers/sellingServerController.js'),
      };
      ********/
 
-     router.param('id', selling.listingByID);
+     router.param('_id', selling.listingByID);
 
     module.exports = router;

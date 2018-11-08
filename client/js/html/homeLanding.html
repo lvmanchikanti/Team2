@@ -4,13 +4,74 @@
     <title>Home landing Dummy Page</title>
 </head>
 
-<body>
+<body ng-app="ufxApp">
 
+<div ng-controller="ItemController">
+
+
+    <!-- <h1>My name is {{$scope.user.name}}</h1> -->
     <h1>Welcome to the Home Landing Page</h1>
 
-    <a href="testLogin.html">
-        <button type="button">Login</button>       
-    </a>
+    <br><a href="postListing.html" class="btn btn-default">Post A Listing!</a><br>
+    <br><a href="account.html" class="btn btn-default">Update User</a><br>
+
+    <!-- <button type="submit" class="signupbtn" ng-click="getCurrentUserInfo($_id)">Get Current User Info</button> -->
+    <!-- <button type="submit" class="signupbtn" ng-click="getCurrentUserInfo($username)">Get Current User Info</button> -->
+
+    <div ng-repeat="items in items | filter: query" ng-click="getCurrentItem($index)">
+      <a ng-href="http://localhost:3000/selling/{{items._id}}"> {{items._id}} </a>
+      <a ng-href="http://localhost:3000/selling/{{items._id}}"> {{items.title}} </a>
+      <a ng-href="http://localhost:3000/selling/{{items._id}}"> {{items.price}} </a>
+
+    </div>
+
+    <div ng-click="getCurrentItem()">
+      <a ng-href="http://localhost:3000/selling/{{items._id}}">
+        <button type="button">item info</button>
+      </a>
+    </div>
+    <!-- <div ng-click="getCurrentUserInfo()"> -->
+        <!-- <a ng-href="http://localhost:3000/account/getinfo/{{use._id}}">user info</a> -->
+
+        <!-- <a ng-href="http://localhost:3000/account/getinfo/{{vm.user._id}}">
+            <button type="button">user vm info</button>
+        </a> -->
+
+        <!-- <a ng-href="http://localhost:3000/account/getinfo/{{user._id}}">{{user.username}}</a>
+        <a ng-href="http://localhost:3000/account/getinfo/{{user._id}}">{{user.email}}</a> -->
+    <!-- </div> -->
+
+
+
+
+
+
+    <!-- <div ng-repeat="user in user | filter: query" ng-click="getCurrentUserInfo($index)"></div> -->
+    <!-- <a ng-href="http://localhost:3000/account/getinfo/{{use._id}}">user info</a> -->
+
+    <!-- <a ng-href="http://localhost:3000/account/getinfo/{{user._id}}">{{user._id}}</a> -->
+
+    <!-- <a ng-href="http://localhost:3000/account/getinfo/{{user._id}}">
+        <button type="button">user info</button>
+    </a> -->
+
+    <!-- <a ng-href="http://localhost:3000/account/getinfo/{{user._id}}">{{user.username}}</a>
+    <a ng-href="http://localhost:3000/account/getinfo/{{user._id}}">{{user.email}}</a> -->
+
+
+
+    <!-- </div> -->
+
+<!-- <h2>Post a Listing</h2> -->
+<!-- <button type="button"><a href="dummyIndex.html"></a>Click Me!</button> -->
+
+
+
+<script src="https://code.angularjs.org/1.4.3/angular.js"></script>
+<script src="../app.js"></script>
+<script src="../factories/itemFactory.js"></script>
+<script src="../controllers/itemController.js"></script>
+
 
 </body>
 </html>

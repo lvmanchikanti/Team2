@@ -1,18 +1,33 @@
-angular.module('items').controller('ItemController', ['$scope', 'Items', 
-  function($scope, Items) {
+angular.module('items').controller('ItemController', ['$scope', 'itemFactory',
+  function($scope, itemFactory) {
     /* Get all the items, then bind it to the scope */
 
-    Items.getAll().then(function(response) {
-      $scope.items = response.data;
-    }, function(error) {
-      console.log('Unable to retrieve items:', error);
-    });
+    console.log('hi')
+    // Items.getAll().then(function(response) {
+    //   $scope.items = response.data;
+    //   //console.log($scope.items._id);
+    // }, function(error) {
+    //   console.log('Unable to retrieve items:', error);
+    // })
 
-    Items.getSelling().then(function(response) {
+    itemFactory.getSelling().then(function(response) {
+      console.log('response data is ' + JSON.stringify(res.data));
       $scope.items = response.data;
+      console.log('$scope.user is ' + JSON.stringify($scope.items));
+      console.log(JSON.stringify($scope.items[0]._id));
+      console.log(JSON.stringify($scope.items[1].title));
+      var listing = $scope.items.filter(items => items._id === $scope.items[0]._id);
+      $scope.items._id = listing[0]._id;
+      $scope.items.title = listing[0].title;
+      $scope.items.price = listing[0].price;
     }, function(error) {
       console.log('Unable to retrieve selling items:', error);
     });
+
+    $scope.getCurrentItem = function(index){
+      var listing = $scope.items.filter(items => items._id === $scope.items[index]._id);
+      $scope.items._id = listing[index]._id;
+    }
 
     $scope.setCondition = function(condition) {
       //setting the location from dropdown
@@ -40,7 +55,7 @@ angular.module('items').controller('ItemController', ['$scope', 'Items',
         $scope.newItem = {};
 
       });
-    };
+    }
 
     $scope.saveSelling = function() {
       $scope.items.push($scope.newItem);
@@ -55,8 +70,9 @@ angular.module('items').controller('ItemController', ['$scope', 'Items',
 
         $scope.newItem = {};
 
+
       });
-    };
+    }
 
   }
 ]);

@@ -4,13 +4,41 @@
     <title>Home landing Dummy Page</title>
 </head>
 
-<body>
+<body ng-app="ufxApp">
+  <div ng-controller="ItemController">
 
     <h1>Welcome to the Home Landing Page</h1>
 
     <a href="/js/html/login.html">
         <button type="button">Login</button>
     </a>
+
+        <!-- <div ng-repeat="items in items | filter: query" ng-click="getCurrentItem($index)"> -->
+        <!-- <div ng-repeat="items in items | filter: query" ng-click="getCurrentItem($index)">
+          <a ng-href="http://localhost:3000/selling/{{items._id}}"> {{items._id}}</a>
+            <button type="button"> item Info </button>
+          <!-<a ng-href="http://localhost:3000/selling/{{items._id}}"> {{items.title}} </a>
+          <a ng-href="http://localhost:3000/selling/{{items._id}}"> {{items.price}} </a> -->
+        <!-- </div> -->
+        <div ng-repeat="items in items | filter: query" ng-click="getCurrentItem()">
+
+          <a ng-href="http://localhost:3000/selling/{{items._id}}">{{items._id}}</a>
+            <!-- <button type="button"> get all </button> -->
+          <!-- </a> -->
+        </div>
+
+        <div ng-click="getSelling()">
+
+          <a ng-href="http://localhost:3000/selling/">
+            <button type="button"> get all </button>
+          </a>
+          <!-- </a> -->
+        </div>
+
+  <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
+  <script src="/app.js"></script>
+  <script src="/factories/itemFactory.js"></script>
+  <script src="/controllers/itemController.js"></script>
 
 </body>
 </html>
