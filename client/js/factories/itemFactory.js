@@ -1,5 +1,4 @@
 angular.module('items', []).factory('itemFactory', function($http) {
-  console.log('hi');
     var methods = {
       getAll: function() {
         return $http.get('http://localhost:3000/buying');
@@ -14,7 +13,6 @@ angular.module('items', []).factory('itemFactory', function($http) {
       },
 
       getCurrentItem: function(_id) {
-        console.log("id =" + _id);
         return $http.get('http://localhost:3000/selling/:_id', _id);
       },
 

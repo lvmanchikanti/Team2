@@ -29,20 +29,19 @@ module.exports.init = function() {
 
   app.use(bodyParser.json());
 
-  app.set('view engine', 'ejs');
-
   /**TODO
   Serve static files */
   // app.use('/', express.static('/../../client'));
   // app.use('/', express.static('/../../client/html/testLogin.html'));
   app.use('/', express.static('client'));
-  // app.get('/selling/:id', function(req, res){
-  //   // res.sendFile('client/listing.html');
-  // var obj =  req.params.id
-  //   // res.render('listings', {data: obj});
-  // res.send(req.params.id);
-  //
+  // app.get('/selling', function(req, res){
+  //   res.redirect('client/js/html/homeLanding.html');
+  //   res.sendFile(path.resolve('client/js/html/homeLanding.html'));
   // });
+  // app.get('/selling/:_id', function(req, res){
+  //   res.sendFile(path.resolve('client/js/html/listing.html'));
+  // });
+
 
 
   //app.use('/sellingListing', express.static('client/listing.html'));
