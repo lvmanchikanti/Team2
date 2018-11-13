@@ -31,13 +31,12 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
     <!-- ng-click="getCurrentItem($index)" -->
       <!-- <a ng-href="http://localhost:3000/selling/{{items._id}}"> -->
 
-
+  <div class="row">
     <div ng-repeat="items in items | filter: query">
-      <div class="w3-row w3-grayscale">
         <div class="w3-col l3 s6">
           <div class="w3-container">
             <div class="w3-display-container">
-            <img src="../images/jeans1.jpg" style="width:30%">
+            <img src="../images/add-item-icon.png" style="width:65%">
             <p>{{items.title}}<br><b>${{items.price}}</b></p>
              <div class="w3-display-middle w3-display-hover">
                 <button ng-click="getCurrentItem($index)" class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></button>
@@ -49,205 +48,208 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 
     </div>
 
-            <style>
-            #myImg {
-                border-radius: 5px;
-                cursor: pointer;
-                transition: 0.3s;
-            }
+        <style>
+        #myImg {
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
 
-            #myImg:hover {opacity: 0.7;}
+        #myImg:hover {opacity: 0.7;}
 
-            /* The Modal (background) */
-            .modal {
-                display: none; /* Hidden by default */
-                position: fixed; /* Stay in place */
-                z-index: 1; /* Sit on top */
-                padding-top: 100px; /* Location of the box */
-                left: 0;
-                top: 0;
-                width: 100%; /* Full width */
-                height: 100%; /* Full height */
-                overflow: auto; /* Enable scroll if needed */
-                background-color: rgb(0,0,0); /* Fallback color */
-                background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
-            }
+        /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 100px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+        }
 
-            /* Modal Content (image) */
+        /* Modal Content (image) */
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+        }
+
+        /* Caption of Modal Image */
+        #caption {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            text-align: center;
+            color: #ccc;
+            padding: 10px 0;
+            height: 150px;
+        }
+
+        /* Add Animation */
+        .modal-content, #caption {
+            -webkit-animation-name: zoom;
+            -webkit-animation-duration: 0.6s;
+            animation-name: zoom;
+            animation-duration: 0.6s;
+        }
+
+        @-webkit-keyframes zoom {
+            from {-webkit-transform: scale(0)}
+            to {-webkit-transform: scale(1)}
+        }
+
+        @keyframes zoom {
+            from {transform: scale(0.1)}
+            to {transform: scale(1)}
+        }
+
+        /* The Close Button */
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* 100% Image Width on Smaller Screens */
+        @media only screen and (max-width: 700px){
             .modal-content {
-                margin: auto;
-                display: block;
-                width: 80%;
-                max-width: 700px;
+                width: 100%;
             }
+        }
+        .shiftright {
+        text-align: center;
+        margin-right: 200px;
+        }
+        .shiftleft {
+        text-align: center;
+        margin-left: 200px;
+        }
+        .description {
+        text-align: left;
+        margin-left: 200px;
+        }
+        .checked {
+        color: orange;
+        }
+        .unchecked {
+        color: white;
+        }
+        </style>
+        <!-- <script>
+          returnDetailedInfo();
+        </script> -->
 
-            /* Caption of Modal Image */
-            #caption {
-                margin: auto;
-                display: block;
-                width: 80%;
-                max-width: 700px;
-                text-align: center;
-                color: #ccc;
-                padding: 10px 0;
-                height: 150px;
-            }
+        <!-- <div class="product">
+            <body>
+                  <h2 align="right"> <img class="shiftleft" id="side" src="../images/iphone4side.jpg" alt="side" width="200" height="200" style="float: left;" >
+                  <img id="frontback" src="../images/iphone4frontback.png" alt="frontback" width="200" height="200" style="float: left;" >
+                  <img id="buttons" src="../images/iphone4buttons.jpg" alt="buttons" width="200" height="200" style="float: left;" >
+                    <h3 class="shiftright">
+                      {{detailedInfo.title}}
+                      <h4 class="shiftright">
+                        Price: ${{detailedInfo.price}} <br>
+                        Selling <br>
+                        <button>Buy Now</button>
+                        <button>Message Seller</button><br>
+                        <h5 class="shiftright">
+                          User: {{detailedInfo.seller.name}} <br>
+                          Rating:
+                          <span class="fa fa-star checked"></span>
+                          <span class="fa fa-star checked"></span>
+                          <span class="fa fa-star checked"></span>
+                          <span class="fa fa-star unchecked"></span>
+                          <span class="fa fa-star unchecked"></span>
+                          <br>Date Posted: 10/29/2017 <br>
+                          Condition: {{detailedInfo.condition}} <br>
+                          Meeting Location: <br>
+                        </h5>
+                      </h4>
+                    </h3>
 
-            /* Add Animation */
-            .modal-content, #caption {
-                -webkit-animation-name: zoom;
-                -webkit-animation-duration: 0.6s;
-                animation-name: zoom;
-                animation-duration: 0.6s;
-            }
+                  </h2>
+            </body>
+            <br>
 
-            @-webkit-keyframes zoom {
-                from {-webkit-transform: scale(0)}
-                to {-webkit-transform: scale(1)}
-            }
+            <section class="description">
 
-            @keyframes zoom {
-                from {transform: scale(0.1)}
-                to {transform: scale(1)}
-            }
-
-            /* The Close Button */
-            .close {
-                position: absolute;
-                top: 15px;
-                right: 35px;
-                color: #f1f1f1;
-                font-size: 40px;
-                font-weight: bold;
-                transition: 0.3s;
-            }
-
-            .close:hover,
-            .close:focus {
-                color: #bbb;
-                text-decoration: none;
-                cursor: pointer;
-            }
-
-            /* 100% Image Width on Smaller Screens */
-            @media only screen and (max-width: 700px){
-                .modal-content {
-                    width: 100%;
-                }
-            }
-            .shiftright {
-            text-align: center;
-            margin-right: 200px;
-            }
-            .shiftleft {
-            text-align: center;
-            margin-left: 200px;
-            }
-            .description {
-            text-align: left;
-            margin-left: 200px;
-            }
-            .checked {
-            color: orange;
-            }
-            .unchecked {
-            color: white;
-            }
-            </style>
-            <!-- <script>
-              returnDetailedInfo();
-            </script> -->
-
-            <div class="product">
-              <body>
-                    <h2 align="right"> <img class="shiftleft" id="side" src="../images/iphone4side.jpg" alt="side" width="200" height="200" style="float: left;" >
-                    <img id="frontback" src="../images/iphone4frontback.png" alt="frontback" width="200" height="200" style="float: left;" >
-                    <img id="buttons" src="../images/iphone4buttons.jpg" alt="buttons" width="200" height="200" style="float: left;" >
-                      <h3 class="shiftright">
-                        {{detailedInfo.title}}
-                        <h4 class="shiftright">
-                          Price: ${{detailedInfo.price}} <br>
-                          Selling <br>
-                          <button>Buy Now</button>
-                          <button>Message Seller</button><br>
-                          <h5 class="shiftright">
-                            User: {{detailedInfo.seller.name}} <br>
-                            Rating:
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star unchecked"></span>
-                            <span class="fa fa-star unchecked"></span>
-                            <br>Date Posted: 10/29/2017 <br>
-                            Condition: {{detailedInfo.condition}} <br>
-                            Meeting Location: <br>
-                          </h5>
-                        </h4>
-                      </h3>
-
-                    <!-- <h4 align="right"> {{sellingInfo.title}} <br> {{sellingInfo.buyer.name}}<br>{{sellingInfo.buyer.email}} -->
-                    </h2>
-              </body>
-              <br>
-
-              <section class="description">
-
-              <details>
-               <summary >Product Specs</summary>
-                <div>
-                  ItemId: {{detailedInfo._id}} <br>
-                  Category: {{detailedInfo.category}} <br>
-                  Description: {{detailedInfo.description}}<br>
-                </div>
-              </details>
+            <details>
+             <summary >Product Specs</summary>
+              <div>
+                ItemId: {{detailedInfo._id}} <br>
+                Category: {{detailedInfo.category}} <br>
+                Description: {{detailedInfo.description}}<br>
+              </div>
+            </details>
 
 
-              </section>
+            </section>
 
-            </div>
-            </div>
+          </div> -->
 
-            <!-- The Modal -->
-            <div id="myModal" class="modal">
-              <span class="close">×</span>
-              <img class="modal-content" id="img01">
-              <div id="caption"></div>
-            </div>
 
-            <script>
-            /* Get the modal */
-            var modal = document.getElementById('myModal');
 
-            /* Get the image and insert it inside the modal - use its "alt" text as a caption */
 
-            var img1 = document.getElementById('side');
-            var img2 = document.getElementById('frontback');
-            var img3 = document.getElementById('buttons');
-            var modalImg = document.getElementById("img01");
-            var captionText = document.getElementById("caption");
-            img1.onclick = function(){
-                modal.style.display = "block";
-                modalImg.src = this.src;
-                captionText.innerHTML = this.alt;
-            }
-            img2.onclick = function(){
-                modal.style.display = "block";
-                modalImg.src = this.src;
-                captionText.innerHTML = this.alt;
-            }
-            img3.onclick = function(){
-                modal.style.display = "block";
-                modalImg.src = this.src;
-                captionText.innerHTML = this.alt;
-            }
-            // Get the <span> element that closes the modal
-            var span = document.getElementsByClassName("close")[0];
+        </div>
 
-            // When the user clicks on <span> (x), close the modal
-            span.onclick = function() {
-                modal.style.display = "none";
-            }
-            </script>
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+          <span class="close">×</span>
+          <img class="modal-content" id="img01">
+          <div id="caption"></div>
+        </div>
+
+        <script>
+        /* Get the modal */
+        var modal = document.getElementById('myModal');
+
+        /* Get the image and insert it inside the modal - use its "alt" text as a caption */
+
+        var img1 = document.getElementById('side');
+        var img2 = document.getElementById('frontback');
+        var img3 = document.getElementById('buttons');
+        var modalImg = document.getElementById("img01");
+        var captionText = document.getElementById("caption");
+        img1.onclick = function(){
+            modal.style.display = "block";
+            modalImg.src = this.src;
+            captionText.innerHTML = this.alt;
+        }
+        img2.onclick = function(){
+            modal.style.display = "block";
+            modalImg.src = this.src;
+            captionText.innerHTML = this.alt;
+        }
+        img3.onclick = function(){
+            modal.style.display = "block";
+            modalImg.src = this.src;
+            captionText.innerHTML = this.alt;
+        }
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+        </script>
 
 
 
