@@ -1,4 +1,5 @@
-angular.module('items', []).factory('itemFactory', function($http) {
+// angular.module('items', []).factory('itemFactory', function($http) {
+angular.module("ufxApp").factory('itemFactory', function($http) {
     var methods = {
       getAll: function() {
         return $http.get('http://localhost:3000/buying');

@@ -3,6 +3,16 @@
 <head>
     <title>Home Landing</title>
 </head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="main.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.w3-sidebar a {font-family: "Roboto", sans-serif}
+body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
+</style>
 
 <body ng-app="ufxApp">
 
@@ -12,16 +22,30 @@
     <!-- <h1>My name is {{$scope.user.name}}</h1> -->
     <h1>Welcome to the Home Landing Page</h1>
 
-    <br><a href="postListing.html" class="btn btn-default">Post A Listing!</a><br>
-    <br><a href="account.html" class="btn btn-default">Update User</a><br>
+    <br><a class="btn" href="postListing.html" class="btn btn-default">Post A Listing!</a><br>
+    <br><a class="btn" href="account.html" class="btn btn-default">Update User</a><br>
+    <br><a class="btn" href="login.html">Login</a><br>
 
     <!-- <button type="submit" class="signupbtn" ng-click="getCurrentUserInfo($_id)">Get Current User Info</button> -->
     <!-- <button type="submit" class="signupbtn" ng-click="getCurrentUserInfo($username)">Get Current User Info</button> -->
     <!-- ng-click="getCurrentItem($index)" -->
-    <div ng-repeat="items in items | filter: query">
       <!-- <a ng-href="http://localhost:3000/selling/{{items._id}}"> -->
-        <button ng-click="getCurrentItem($index)">{{items.title}} <br> ${{items.price}}<br></button>
-      <!-- </a> -->
+
+
+    <div ng-repeat="items in items | filter: query">
+      <div class="w3-row w3-grayscale">
+        <div class="w3-col l3 s6">
+          <div class="w3-container">
+            <div class="w3-display-container">
+            <img src="../images/jeans1.jpg" style="width:30%">
+            <p>{{items.title}}<br><b>${{items.price}}</b></p>
+             <div class="w3-display-middle w3-display-hover">
+                <button ng-click="getCurrentItem($index)" class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
     </div>
 

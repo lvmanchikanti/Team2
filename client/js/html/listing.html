@@ -8,7 +8,7 @@
 
 <div ng-controller="ItemController">
 
-    <h1 ng-click="getCurrentItem(returnIndex())">Listing</h1>
+    <h1>Listing</h1>
 
             <style>
             #myImg {
@@ -132,7 +132,7 @@
                           <button>Buy Now</button>
                           <button>Message Seller</button><br>
                           <h5 class="shiftright">
-                            User: {{items.seller.name}} <br>
+                            User: {{detailedInfo.seller.name}} <br>
                             Rating:
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star checked"></span>
@@ -140,7 +140,7 @@
                             <span class="fa fa-star unchecked"></span>
                             <span class="fa fa-star unchecked"></span>
                             <br>Date Posted: 10/29/2017 <br>
-                            Condition: {{items.condition}} <br>
+                            Condition: {{detailedInfo.condition}} <br>
                             Meeting Location: <br>
                           </h5>
                         </h4>
@@ -156,9 +156,9 @@
               <details>
                <summary >Product Specs</summary>
                 <div>
-                  ItemId: {{items._id}} <br>
-                  Category: {{items.category}} <br>
-                  Description: {{items.description}}<br>
+                  ItemId: {{detailedInfo._id}} <br>
+                  Category: {{detailedInfo.category}} <br>
+                  Description: {{detailedInfo.description}}<br>
                 </div>
               </details>
 
