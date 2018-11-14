@@ -23,18 +23,16 @@ module.exports.init = function() {
   //enable request logging for development debugging
   app.use(morgan('dev'));
 
-<<<<<<< HEAD
   //body parsing middleware
   //body parsing middleware
   // app.use(bodyParser.urlencoded({extended: true}));
-=======
->>>>>>> 96544d152568491d64d91ea764c06d685855f472
+
 
   app.use(bodyParser.json());
 
   /**TODO
   Serve static files */
-  
+
   app.use('/', express.static('client'));
   // app.get('/selling', function(req, res){
   //   res.redirect('client/js/html/homeLanding.html');
@@ -46,25 +44,22 @@ module.exports.init = function() {
 
 
 
-<<<<<<< HEAD
   //app.use('/sellingListing', express.static('client/listing.html'));
 
-  /**TODO
-=======
+
   app.use('/signup', signupRouter);
 
   app.use('/login/auth', loginRouter);
-  
+
   app.use('/account/getinfo', userRouter);
 
   app.use('/account/update',userRouter);
 
   app.use('/account/delete', userRouter);
 
- 
-  /**TODO 
->>>>>>> 96544d152568491d64d91ea764c06d685855f472
-  Use the listings router for requests to the api */
+
+
+
   app.use('/buying', buyingRouter);
   app.use('/selling', sellingRouter);
 
@@ -76,19 +71,16 @@ module.exports.init = function() {
   Go to homepage for all routes not specified */
 
 
-<<<<<<< HEAD
 
   // app.use('/user', userRouter);
 
-=======
->>>>>>> 96544d152568491d64d91ea764c06d685855f472
+
   app.use('/signup', signupRouter);
 
   app.use('/login/auth', loginRouter);
 
   app.use('/account', userRouter);
 
-<<<<<<< HEAD
   // app.use('/account/update', userRouter);
   //for cancel button just follow jason's logout example in the html
 
@@ -101,8 +93,7 @@ module.exports.init = function() {
   //   // res.sendFile("/client/html/loginTest.html", {"root": __dirname});
 
   // });
-=======
->>>>>>> 96544d152568491d64d91ea764c06d685855f472
+
 
   app.all('/*', function(req, res){
     res.redirect('/');
