@@ -1,12 +1,21 @@
 {
-  "name": "UFX",
+  "name": "logintest2",
   "version": "1.0.0",
-  "description": "Routing server-side requests using ExpressJS",
+  "description": "ufx login and sign up process",
   "main": "server.js",
-  "author": "Medhir Bhargava",
-  "license": "MIT",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shutingmo/Team2/tree/login3"
+  },
+  "author": "Shuting Mo, Regan Tam",
+  "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+<<<<<<< HEAD
     "body-parser": "^1.18.3",
     "ejs": "^2.6.1",
     "express": "^4.16.3",
@@ -17,5 +26,10 @@
   "devDependencies": {
     "should": "^7.1.1",
     "supertest": "^1.2.0"
+=======
+    "express": "^4.16.4",
+    "html": "^1.0.0",
+    "morgan": "^1.9.1"
+>>>>>>> 96544d152568491d64d91ea764c06d685855f472
   }
 }
