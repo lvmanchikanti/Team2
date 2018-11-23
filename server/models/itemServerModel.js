@@ -9,6 +9,10 @@ var itemSchema = new Schema({
     required: true,
     unique: true
   },
+  img: {
+    type: buffer,
+    contentType: String
+  },
   title: {
     type: String,
     required: true
