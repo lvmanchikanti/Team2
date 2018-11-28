@@ -71,6 +71,8 @@ button:hover {
     cursor: pointer;
 }
 
+
+
 .signupbtn{
     background-color: rgb(76, 107, 175);
     color: white;
@@ -84,7 +86,7 @@ button:hover {
 .cancelbtn, .signupbtn, .loginbtn {
     float: left;
     width: 30%;
-    margin: 15px;
+    margin: 10px;
   }
 /* Center the avatar image inside this container */
 /* .imgcontainer {
@@ -96,10 +98,11 @@ button:hover {
 /* img.avatar {
     width: 40%;
     border-radius: 50%;
-} */ 
+} */
 
 /* Add padding to containers */
 .container {
+    width: 768px;
     padding: 16px;
 }
 
