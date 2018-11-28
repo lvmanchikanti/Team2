@@ -98,6 +98,8 @@ module.exports.init = function() {
 
 
   app.all('/*', function(req, res){
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
     res.redirect('/');
   });
 
