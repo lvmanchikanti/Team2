@@ -3,10 +3,8 @@
 <head>
     <title>Single Listing</title>
 </head>
-
 <body ng-app="ufxApp">
 
-<div ng-controller="ItemController">
 
     <h1>Listing</h1>
 
@@ -119,20 +117,21 @@
               returnDetailedInfo();
             </script> -->
 
+          <div ng-controller="DetailController">
             <div class="product">
               <body>
                     <h2 align="right"> <img class="shiftleft" id="side" src="../images/iphone4side.jpg" alt="side" width="200" height="200" style="float: left;" >
                     <img id="frontback" src="../images/iphone4frontback.png" alt="frontback" width="200" height="200" style="float: left;" >
                     <img id="buttons" src="../images/iphone4buttons.jpg" alt="buttons" width="200" height="200" style="float: left;" >
                       <h3 class="shiftright">
-                        {{detailedInfo.title}}
+                        {{listing.title}}
                         <h4 class="shiftright">
-                          Price: ${{detailedInfo.price}} <br>
+                          Price: ${{listing.price}} <br>
                           Selling <br>
                           <button>Buy Now</button>
                           <button>Message Seller</button><br>
                           <h5 class="shiftright">
-                            User: {{detailedInfo.seller.name}} <br>
+                            User: {{listing.seller.name}} <br>
                             Rating:
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star checked"></span>
@@ -140,7 +139,7 @@
                             <span class="fa fa-star unchecked"></span>
                             <span class="fa fa-star unchecked"></span>
                             <br>Date Posted: 10/29/2017 <br>
-                            Condition: {{detailedInfo.condition}} <br>
+                            Condition: {{listing.condition}} <br>
                             Meeting Location: <br>
                           </h5>
                         </h4>
@@ -217,7 +216,7 @@
             <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.0/angular-route.js"></script>
             <script src="../app.js"></script>
             <script src="../factories/itemFactory.js"></script>
-            <script src="../controllers/itemController.js"></script>
+            <script src="../controllers/detailController.js"></script>
 
           </body>
 </html>

@@ -13,8 +13,8 @@ angular.module("ufxApp").factory('itemFactory', function($http) {
         return $http.get('http://localhost:3000/selling');
       },
 
-      getCurrentItem: function(_id) {
-        return $http.get('http://localhost:3000/selling/:_id', _id);
+      findItem: function(_id) {
+        return $http.get('http://localhost:3000/selling/' + _id);
       },
 
       createSelling: function(listing) {
