@@ -1,13 +1,13 @@
 angular.module('user', []).factory('userFactory', function($http) {
     var userFactoryMethods = {
         signupUser: function(user){
-            return $http.post('http://localhost:3000/signup', user);
+            return $http.post('/signup', user);
         },
 
         loginUser: function(returnUser){
             console.log('in user factory ' + JSON.stringify(returnUser))
 
-            return $http.post('http://localhost:3000/login/auth', returnUser);
+            return $http.post('/login/auth', returnUser);
         },
 
         // getAllUsers: function(){
@@ -22,22 +22,22 @@ angular.module('user', []).factory('userFactory', function($http) {
 
         getCurrentUser: function(){
             console.log('in fac id')
-            return $http.get('http://localhost:3000/account/getinfo');
+            return $http.get('/account/getinfo');
 
         },
 
         updateUser: function(updatedUser){
-            return $http.post('http://localhost:3000/account/update', updatedUser);
+            return $http.post('/account/update', updatedUser);
         },
 
         logout: function() {
             console.log('still logging you out...')
-            return $http.delete('http://localhost:3000/login/auth')
+            return $http.delete('/login/auth')
         },
 
         delete: function(){
             console.log('in process of deleting your account')
-            return $http.delete('http://localhost:3000/account/delete')
+            return $http.delete('/account/delete')
         }
 
     };

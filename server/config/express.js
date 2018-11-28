@@ -100,6 +100,7 @@ module.exports.init = function() {
 
   app.all('/*', function(req, res){
     /*res.header("Access-Control-Allow-Origin", "*");
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     res.header("Access-Control-Allow-Headers", "X-Requested-With");*/
     res.redirect('/');
   });
