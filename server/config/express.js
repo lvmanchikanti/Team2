@@ -4,7 +4,7 @@ var path = require('path'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
     config = require('./config'),
-    cors = require('cors'),
+    // cors = require('cors'),
 
     buyingRouter = require('../routes/buyingServerRoutes.js'),
     sellingRouter = require('../routes/sellingServerRoutes.js'),
@@ -23,8 +23,8 @@ module.exports.init = function() {
 
   //enable request logging for development debugging
   app.use(morgan('dev'));
-  app.use(cors());
-  app.options('*', cors()) // include before other routes
+  /*app.use(cors());
+  app.options('*', cors())*/
 
   //body parsing middleware
   //body parsing middleware
@@ -99,8 +99,8 @@ module.exports.init = function() {
 
 
   app.all('/*', function(req, res){
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    /*res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");*/
     res.redirect('/');
   });
 
