@@ -4,6 +4,7 @@ var path = require('path'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
     config = require('./config'),
+    cors = require('cors'),
 
     buyingRouter = require('../routes/buyingServerRoutes.js'),
     sellingRouter = require('../routes/sellingServerRoutes.js'),
@@ -22,6 +23,7 @@ module.exports.init = function() {
 
   //enable request logging for development debugging
   app.use(morgan('dev'));
+  app.use(cors());
 
   //body parsing middleware
   //body parsing middleware
