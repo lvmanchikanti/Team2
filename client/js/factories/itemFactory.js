@@ -1,23 +1,24 @@
-angular.module("ufxApp").factory('itemFactory', function($https) {
+// angular.module('items', []).factory('itemFactory', function($http) {
+angular.module("ufxApp").factory('itemFactory', function($http) {
     var methods = {
       getAll: function() {
-        return $https.get('https://localhost:3000/buying');
+        return $http.get('http://localhost:3000/buying');
       },
 
       createBuying: function(listing) {
-        return $https.post('https://localhost:3000/buying', listing);
+        return $http.post('http://localhost:3000/buying', listing);
       },
 
       getSelling: function() {
-        return $https.get('https://localhost:3000/selling');
+        return $http.get('http://localhost:3000/selling');
       },
 
       getCurrentItem: function(_id) {
-        return $https.get('https://localhost:3000/selling/:_id', _id);
+        return $http.get('http://localhost:3000/selling/:_id', _id);
       },
 
       createSelling: function(listing) {
-        return $https.post('https://localhost:3000/selling', listing);
+        return $http.post('http://localhost:3000/selling', listing);
       },
 
     };

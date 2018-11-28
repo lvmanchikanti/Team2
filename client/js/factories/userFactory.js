@@ -1,36 +1,47 @@
-angular.module('user', []).factory('userFactory', function($https) {
+angular.module('user', []).factory('userFactory', function($http) {
     var userFactoryMethods = {
         signupUser: function(user){
-            return $https.post('https://localhost:3000/signup', user);
+            return $http.post('http://localhost:3000/signup', user);
         },
 
         loginUser: function(returnUser){
             console.log('in user factory ' + JSON.stringify(returnUser))
 
-            return $https.post('https://localhost:3000/login/auth', returnUser);
+            return $http.post('http://localhost:3000/login/auth', returnUser);
         },
+
+        // getAllUsers: function(){
+        //     return $http.get('http://localhost:3000/account/getinfo');
+        // },
+
+        // getCurrentUser: function(_id){
+        //     console.log('in fac id is ' + _id)
+        //     return $http.get('http://localhost:3000/account/getinfo/:_id', _id);
+
+        // },
 
         getCurrentUser: function(){
             console.log('in fac id')
-            return $https.get('https://localhost:3000/account/getinfo');
+            return $http.get('http://localhost:3000/account/getinfo');
 
         },
 
         updateUser: function(updatedUser){
-            return $https.post('https://localhost:3000/account/update', updatedUser);
+            return $http.post('http://localhost:3000/account/update', updatedUser);
         },
 
         logout: function() {
             console.log('still logging you out...')
-            return $https.delete('https://localhost:3000/login/auth')
+            return $http.delete('http://localhost:3000/login/auth')
         },
 
         delete: function(){
             console.log('in process of deleting your account')
-            return $https.delete('https://localhost:3000/account/delete')
+            return $http.delete('http://localhost:3000/account/delete')
         }
 
     };
 
     return userFactoryMethods;  
   });
+  
