@@ -10,7 +10,7 @@ var corsOptions = {
 */
 module.exports.start = function() {
   var app = express.init();
-  app.use(cors());
+  // app.use(cors());
   app.listen(config.port, function() {
     console.log('App listening on port', config.port);
   });
