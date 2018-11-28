@@ -24,6 +24,7 @@ module.exports.init = function() {
   //enable request logging for development debugging
   app.use(morgan('dev'));
   app.use(cors());
+  app.options('*', cors()) // include before other routes
 
   //body parsing middleware
   //body parsing middleware
