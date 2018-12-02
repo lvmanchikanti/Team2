@@ -3,11 +3,19 @@ angular.module('items')
   function($scope, $location, $window, itemFactory) {
     itemFactory.getSelling().then(function(response) {
       // console.log('response data is ' + JSON.stringify(response.data));
-      $scope.items = response.data;
+      $scope.sellingItems = response.data;
       // console.log("Check1");
 
     }, function(error) {
       console.log('Unable to retrieve selling items:', error);
+    });
+
+    itemFactory.getBuying().then(function(response) {
+      // console.log('response data is ' + JSON.stringify(response.data));
+      $scope.buyingItems = response.data;
+      // console.log("Check1");
+    }, function(error) {
+      console.log('Unable to retrieve buying items:', error);
     });
 
     $scope.getCurrentItem = function(items){
@@ -15,6 +23,9 @@ angular.module('items')
       console.log(items);
       sessionStorage.setItem('selected', itemId);
     }
+
+    var email;
+    var itemTitle;
 
     $scope.details = function(){
       var selectedItem = sessionStorage.getItem('selected');
@@ -25,6 +36,18 @@ angular.module('items')
           var currItem = response.data;
           $scope.detailedInfo = currItem;
           console.log($scope.detailedInfo);
+
+          if(response.data.seller){
+            email = response.data.seller.email
+            itemTitle = response.data.title
+          }
+          else if(response.data.buyer){
+            email = response.data.buyer.email
+            itemTitle = response.data.title
+          }
+
+          console.log('email check is ' + email)
+
         }, function(error){
           console.log('Unable to retrieve selling items:', error);
         })
@@ -32,26 +55,57 @@ angular.module('items')
       $scope.initial(selectedItem);
     }
 
-    // $scope.setSeller = function() {
-    //   console.log(itemFactory.getCurrentUser().email);
+    $scope.details = function(){
+      var selectedItem = sessionStorage.getItem('selected');
+      $scope.initial = function(id){
+        console.log("initial check");
+        itemFactory.findSellingItem(id).then(function(response){
+            if(response.data === null){
+                console.log("IN IF STATEMENT");
+                console.log(id);
+                itemFactory.findBuyingItem(id).then(function(res){
+                  console.log(res.data);
+                  var currItem = res.data;
+                  $scope.detailedInfo = currItem;
+                  console.log($scope.detailedInfo);
+                }, function(error){
+                  console.log('Unable to retrieve buying items:', error);
+                });
+                return;
+            }
+            console.log("Out of If");
+            var currItem = response.data;
+            $scope.detailedInfo = currItem;
+            console.log($scope.detailedInfo);
+            }, function(error){
+                console.log('Unable to retrieve buying items:', error);
+            })
+        }
+        $scope.initial(selectedItem);
+      }
+    // $scope.setFlag = function(item, flagged) {
+    //   // console.log("in here");
+    //   // console.log(item.flagged);
+    //   // console.log(flagged);
+    //   item.flagged = flagged;
     // }
 
     $scope.setCategory = function(category) {
       //setting the category from dropdown
       $scope.newItem.category = category;
-      $scope.items.push($scope.newItem.category);
+      // $scope.items.push($scope.newItem.category);
     }
 
     $scope.setCondition = function(condition) {
       //setting the condition from dropdown
       $scope.newItem.condition = condition;
-      $scope.items.push($scope.newItem.condition);
+      // $scope.items.push($scope.newItem.condition);
     }
 
     $scope.setLocation = function(location) {
       //setting the location from dropdown
       $scope.newItem.location = location;
-      $scope.items.push($scope.newItem.location);
+      // $scope.items.push($scope.newItem.location);
     }
 
     $scope.uploadImg = function(img){
@@ -59,7 +113,7 @@ angular.module('items')
     }
 
     $scope.saveBuying = function() {
-      $scope.items.push($scope.newItem);
+      $scope.buyingItems.push($scope.newItem);
 
       console.log(JSON.stringify($scope.newItem));
       itemFactory.createBuying($scope.newItem).then(function(res,err)
@@ -75,7 +129,7 @@ angular.module('items')
     }
 
     $scope.saveSelling = function() {
-      $scope.items.push($scope.newItem);
+      $scope.sellingItems.push($scope.newItem);
 
       console.log(JSON.stringify($scope.newItem));
       itemFactory.createSelling($scope.newItem).then(function(res,err)
@@ -92,7 +146,7 @@ angular.module('items')
     }
 
     $scope.setBuyer = function() {
-      $scope.items.push($scope.newItem);
+      $scope.buyingItems.push($scope.newItem);
       // $scope.newItem.buyer.name = 'cynthia';
       // $scope.newItem.buyer.email = 'momowhales';
       console.log('scope.newItem in set buyer is ' + JSON.stringify($scope.newItem))
@@ -110,7 +164,7 @@ angular.module('items')
     }
 
     $scope.setSeller = function(){
-      $scope.items.push($scope.newItem);
+      $scope.sellingItems.push($scope.newItem);
 
       console.log('scope.newItem in set seller is ' + JSON.stringify($scope.newItem))
       itemFactory.createSelling($scope.newItem).then(function(res,err)
@@ -143,8 +197,18 @@ angular.module('items')
           console.log('Unable to delete listings', err);
         }
       });
-
-
     };
+
+    $scope.sendMail = function() {
+      // var link = "mailto:" + email
+      //         + "?cc=myCCadress@example.com"
+      //         + "&subject=" + escape("This is my subject")
+      //         + "&body=" + escape("hello")
+      // ;
+  
+      // window.location.href = link;
+      window.location.href = "mailto:"+email+"?subject=Interested in "+itemTitle+"&body=hello i am interested";
+
+    }
   }
 ]);
