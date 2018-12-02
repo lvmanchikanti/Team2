@@ -2,6 +2,7 @@ var express = require('express');
 var mongoose = require('mongoose');
 var User = require('../models/userServerModel.js');
 var bcrypt = require('bcryptjs');
+var flash = require('express-flash');
 // var body = require('body-parser');
 
 // exports.getAllUsers = function(req, res){
@@ -32,14 +33,17 @@ exports.authenticateUser = function(req, res){
         {
             console.log('login complete');
             currSessionUser = req.body.username;
-            return res.status(200).send('login done');
+            res.status(200).send({message: 'test'});
         }
 
         else
         {
             console.log('Username or password is incorrect');
-            return res.status(401).send('Username or password is incorrect');
+            // req.flash('error', 'userame or password is wrong')
+            // return res.status(403).send();
+            res.status(401).send({message: 'nope'});
         }
+        // res.end();
 
     })
 };
@@ -270,4 +274,39 @@ exports.deleteUser = function(req,res){
                 return res.status(200).send('successful update')
             }
     })
+};
+
+exports.delete = function(req, res) {
+  console.log(req.user);
+  var user = req.user;
+  console.log(user);
+
+  /** TODO **/
+  /* Remove the article */
+
+  user.remove(function(err)
+  {
+    if (err)
+    {
+      console.log(err);
+      res.status(400).send(err);
+    }
+    else
+    {
+      res.json(user);
+    }
+  })
+
+};
+
+exports.userByID = function(req, res, next, id) {
+  console.log('back end controller id is ' + id);
+  User.findById(id).exec(function(err, user) {
+  if(err) {
+    res.status(400).send(err);
+  } else {
+    req.user = user;
+    next();
+  }
+});
 };
