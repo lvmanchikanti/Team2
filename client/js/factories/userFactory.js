@@ -8,7 +8,7 @@ angular.module('ufxApp').factory('userFactory', function($http) {
         loginUser: function(returnUser){
             console.log('in user factory ' + JSON.stringify(returnUser))
 
-            return $http.post('http://localhost:3000/login/auth', returnUser)
+            return $http.post('/login/auth', returnUser)
                 .success(
                     function(res){
                         console.log('Fac,res.data is '+ JSON.stringify(res.data))
