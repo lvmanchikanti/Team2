@@ -3,14 +3,15 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 /* Create your schema */
-var sellingSchema = new Schema({
+var itemSchema = new Schema({
   title: {
     type: String,
     required: true
   },
   category: {
     type: String,
-    required: true
+    required: true,
+    enum: ['Textbooks, Electronics, Vehicles, Tickets, Clothing, Entertainment, Housing, Miscellaneous']
   },
   price: {
     type: Number,
@@ -31,6 +32,12 @@ var sellingSchema = new Schema({
   enum: ['Century Tower', 'Reitz Union', 'Hub', 'Library West', 'Southwest Rec']
   //How to add constraint among 5 locations
   },
+  listingType: {
+    type: String,
+    required: true,
+    enum: ['selling', 'buying']
+    //How to add constraint of either selling or buying listing
+  },
   complete: {
     type: Boolean,
     default: 'false'
@@ -43,17 +50,17 @@ var sellingSchema = new Schema({
     name: String,
     email: String,
   },
-  // posted_at: Date,
+  posted_at: Date,
   flagged: {
     type: Boolean,
     default: 'false'
-  }
+  },
   // edited_at: Date
 });
 
 
 /* Use your schema to instantiate a Mongoose model */
-var Selling = mongoose.model('sellingItem', sellingSchema);
+var Item = mongoose.model('Item', itemSchema);
 
 /* Export the model to make it avaiable to other parts of your Node application */
-module.exports = Selling;
+module.exports = Item;
