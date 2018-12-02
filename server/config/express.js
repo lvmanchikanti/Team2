@@ -61,8 +61,11 @@ module.exports.init = function() {
   app.use('/selling', sellingRouter);
   /**TODO
   Go to homepage for all routes not specified */
-  // app.get('/', function(req,res){
-  //   res.redirect('/html/index.html');
+  // app.get('/selling/:_id', function(req, res) {
+  //   console.log(req.params._id);
+  //   var listingId = req.params._id;
+  //   res.render(__dirname + "/client/js/html/listing.html", {_id: listingId});
+  // });
   /**TODO
   Go to homepage for all routes not specified */
 

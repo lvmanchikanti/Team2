@@ -16,12 +16,9 @@ router.route('/')
     .post(userCtrl.updateUser)
     .delete(userCtrl.deleteUser);
 
-
+// router.route('/admin')
+//   .get(userCtrl.getAllUser);
 
 // router.param('_id', userCtrl.userByID);
 
 module.exports = router;
-
-
-
-

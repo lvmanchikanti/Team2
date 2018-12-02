@@ -26,6 +26,12 @@ angular.module('user', []).factory('userFactory', function($http) {
 
         },
 
+        getAllUser: function(){
+            console.log('in fac id')
+            return $http.get('http://localhost:3000/account/getinfo/admin');
+
+        },
+
         updateUser: function(updatedUser){
             return $http.post('http://localhost:3000/account/update', updatedUser);
         },
@@ -38,10 +44,15 @@ angular.module('user', []).factory('userFactory', function($http) {
         delete: function(){
             console.log('in process of deleting your account')
             return $http.delete('http://localhost:3000/account/delete')
-        }
+        },
+
+        // deleteUser: function(_id) {
+        //
+        //   return $http.delete('http://localhost:8080/api/listings', _id);
+        //
+        // },
 
     };
 
-    return userFactoryMethods;  
+    return userFactoryMethods;
   });
-  
