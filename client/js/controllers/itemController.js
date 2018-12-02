@@ -1,5 +1,5 @@
 
-app
+angular.module('items')
 .controller('ItemController', ['$scope', '$location', '$window','itemFactory',
   function($scope, $location, $window, itemFactory) {
     itemFactory.getSelling().then(function(response) {
@@ -33,6 +33,10 @@ app
       $scope.initial(selectedItem);
     }
 
+    // $scope.setSeller = function() {
+    //   console.log(itemFactory.getCurrentUser().email);
+    // }
+
     $scope.setCategory = function(category) {
       //setting the category from dropdown
       $scope.newItem.category = category;
@@ -51,18 +55,16 @@ app
       $scope.items.push($scope.newItem.location);
     }
 
+    $scope.uploadImg = function(img){
+
+    }
+
     $scope.saveBuying = function() {
       $scope.items.push($scope.newItem);
 
       console.log(JSON.stringify($scope.newItem));
       itemFactory.createBuying($scope.newItem).then(function(res,err)
       {
-        // if(err)
-        // {
-        //   $scope.errorMessage = "Error. Listing not successfully added";
-        //   console.log('Unable to add listing', err);
-        // }
-
         if(res.status !== 200)
         {
             console.log("\nunable to add listing");
@@ -77,6 +79,41 @@ app
       $scope.items.push($scope.newItem);
 
       console.log(JSON.stringify($scope.newItem));
+      itemFactory.createSelling($scope.newItem).then(function(res,err)
+      {
+        if(res.status !== 200)
+        {
+            console.log("\nunable to add listing");
+        }
+
+        $scope.newItem = {};
+
+
+      });
+    }
+
+    $scope.setBuyer = function() {
+      $scope.items.push($scope.newItem);
+      // $scope.newItem.buyer.name = 'cynthia';
+      // $scope.newItem.buyer.email = 'momowhales';
+      console.log('scope.newItem in set buyer is ' + JSON.stringify($scope.newItem))
+      itemFactory.createBuying($scope.newItem).then(function(res,err)
+      {
+        if(res.status !== 200)
+        {
+            console.log("\nunable to add listing");
+        }
+
+        $scope.newItem = {};
+
+      });
+
+    }
+
+    $scope.setSeller = function(){
+      $scope.items.push($scope.newItem);
+
+      console.log('scope.newItem in set seller is ' + JSON.stringify($scope.newItem))
       itemFactory.createSelling($scope.newItem).then(function(res,err)
       {
         if(res.status !== 200)
@@ -110,6 +147,5 @@ app
 
 
     };
-
   }
 ]);

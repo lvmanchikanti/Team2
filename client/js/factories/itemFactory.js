@@ -2,6 +2,10 @@
 angular.module("ufxApp").factory('itemFactory', function($http) {
     var currId;
     var methods = {
+      getCurrentUser: function(){
+        console.log('in fac id')
+        return $http.get('http://localhost:3000/account/getinfo');
+      },
       getAll: function() {
         return $http.get('http://localhost:3000/buying');
       },
