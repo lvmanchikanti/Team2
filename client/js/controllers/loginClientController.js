@@ -16,10 +16,12 @@ angular.module('user').controller('loginController', ['$scope','userFactory',
                 else if (res.status === 200)
                 {
                     console.log('login was success, front end');
-                    // if($scope.returnUser.username === 'administrator'){
-                    //   window.location.replace('../html/adminLanding.html');
-                    // }
-                    window.location.replace('../html/userLanding.html');
+                    if($scope.returnUser.username === 'administrator'){
+                      window.location.replace('../html/adminLanding.html');
+                    }
+                    else{
+                      window.location.replace('../html/userLanding.html');
+                    }
                 }
                 $scope.returnUser = {};
             })

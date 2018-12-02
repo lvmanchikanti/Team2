@@ -26,11 +26,11 @@ angular.module("ufxApp").factory('itemFactory', function($http) {
         return $http.post('http://localhost:3000/selling', listing);
       },
 
-      // delete: function(_id) {
-      //
-      //   return $http.delete('http://localhost:3000/selling/' + _id);
-      //
-      // },
+      delete: function(_id) {
+
+        return $http.delete('http://localhost:3000/selling/' + _id);
+
+      },
 
     };
 

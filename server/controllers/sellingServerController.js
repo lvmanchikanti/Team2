@@ -62,26 +62,26 @@ exports.create = function(req, res) {
   //   });
   /* Delete a listing */
 
-  // exports.delete = function(req, res) {
-  //   var selling = req.selling;
-  //
-  //   /** TODO **/
-  //   /* Remove the article */
-  //
-  //   selling.remove(function(err)
-  //   {
-  //     if (err)
-  //     {
-  //       console.log(err);
-  //       res.status(400).send(err);
-  //     }
-  //     else
-  //     {
-  //       res.json(selling);
-  //     }
-  //   })
-  //
-  // };
+  exports.delete = function(req, res) {
+    var selling = req.selling;
+
+    /** TODO **/
+    /* Remove the article */
+
+    selling.remove(function(err)
+    {
+      if (err)
+      {
+        console.log(err);
+        res.status(400).send(err);
+      }
+      else
+      {
+        res.json(selling);
+      }
+    })
+
+  };
 
   exports.listingByID = function(req, res, next, id) {
     console.log('back end controller id is ' + id);

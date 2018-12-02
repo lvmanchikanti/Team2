@@ -90,26 +90,26 @@ app
       });
     }
 
-//     $scope.deleteItem = function(index) {
-//      /**TODO
-//         Delete the article using the Listings factory. If the removal is successful,
-//     navigate back to 'listing.list'. Otherwise, display the error.
-//        */
-//       var listingId = $scope.items[index]._id;
-//       $scope.items.splice(index,1);
-//
-//       itemFactory.delete(listingId).then(function(err)
-//       {
-//
-//         if (err)
-//         {
-//           $scope.errorMessage = "Error. Listing not deleted";
-//           console.log('Unable to delete listings', err);
-//         }
-//       });
-//
-//
-//     };
-//
+    $scope.deleteItem = function(index) {
+     /**TODO
+        Delete the article using the Listings factory. If the removal is successful,
+    navigate back to 'listing.list'. Otherwise, display the error.
+       */
+      var listingId = $scope.items[index]._id;
+      $scope.items.splice(index,1);
+
+      itemFactory.delete(listingId).then(function(err)
+      {
+
+        if (err)
+        {
+          $scope.errorMessage = "Error. Listing not deleted";
+          console.log('Unable to delete listings', err);
+        }
+      });
+
+
+    };
+
   }
 ]);
