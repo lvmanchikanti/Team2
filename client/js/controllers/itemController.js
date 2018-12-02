@@ -29,6 +29,22 @@ angular.module('items')
       var selectedItem = sessionStorage.getItem('selected');
       $scope.initial = function(id){
         console.log("initial check");
+        itemFactory.findItem(id).then(function(response){
+          console.log(JSON.stringify(response.data));
+          var currItem = response.data;
+          $scope.detailedInfo = currItem;
+          console.log($scope.detailedInfo);
+        }, function(error){
+          console.log('Unable to retrieve selling items:', error);
+        })
+      }
+      $scope.initial(selectedItem);
+    }
+
+    $scope.details = function(){
+      var selectedItem = sessionStorage.getItem('selected');
+      $scope.initial = function(id){
+        console.log("initial check");
         itemFactory.findSellingItem(id).then(function(response){
             if(response.data === null){
                 console.log("IN IF STATEMENT");
