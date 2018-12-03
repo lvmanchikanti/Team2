@@ -2,6 +2,9 @@
 angular.module('items')
 .controller('ItemController', ['$scope', '$location', '$window','itemFactory',
   function($scope, $location, $window, itemFactory) {
+
+    $scope.listings = [];
+
     itemFactory.getSelling().then(function(response) {
       // console.log('response data is ' + JSON.stringify(response.data));
       $scope.sellingItems = response.data;
@@ -27,6 +30,7 @@ angular.module('items')
 
     var email;
     var itemTitle;
+    var currItem;
 
     $scope.details = function(){
       var selectedItem = sessionStorage.getItem('selected');
@@ -34,7 +38,7 @@ angular.module('items')
         console.log("initial check");
         itemFactory.findItem(id).then(function(response){
           console.log(JSON.stringify(response.data));
-          var currItem = response.data;
+          currItem = response.data;
           $scope.detailedInfo = currItem;
           console.log($scope.detailedInfo);
 
@@ -206,10 +210,142 @@ angular.module('items')
       //         + "&subject=" + escape("This is my subject")
       //         + "&body=" + escape("hello")
       // ;
-  
+
       // window.location.href = link;
       window.location.href = "mailto:"+email+"?subject=Interested in "+itemTitle+"&body=hello i am interested";
 
+    }
+
+    // $scope.theFilter = {};
+
+    $scope.filterItems = function(category){
+      console.log('check 1')
+      $scope.itemSearch = {};
+      $scope.itemSearchBar = "";
+
+      if ($scope.itemSearch.category === category) {
+        $scope.itemSearch = {};
+        $scope.itemSearchBar = "";
+
+      }
+      else {
+        $scope.itemSearch.category = category;
+      }
+    }
+
+    $scope.flagListing = function(){
+      var flagItem = sessionStorage.getItem('selected');
+      console.log('flag item is ' + flagItem)
+
+      itemFactory.findItem(flagItem).then(function(response){
+        console.log(JSON.stringify(response.data));
+        // flaggedItem = response.data;
+        // $scope.detailedInfo = flaggedItem;
+        // console.log($scope.detailedInfo);
+        if(response){
+          response.data.flagged = true;
+
+          console.log(response.data.flagged)
+          console.log(response)
+
+          itemFactory.flagItem(response.data).then(function(res){
+            if(res.status !== 200)
+            {
+              console.log("\nunable to flag user");
+            }
+            else if (res.status === 200)
+            {
+              console.log('flag was success, front end');
+            }
+
+          })
+        }
+
+      }, function(error){
+        console.log('Unable to retrieve selling items:', error);
+      })
+    }
+
+    $scope.flagUser = function(){
+      var flagItem = sessionStorage.getItem('selected');
+
+      itemFactory.findItem(flagItem).then(function(response){
+        console.log(JSON.stringify(response.data));
+        // flaggedItem = response.data;
+        // $scope.detailedInfo = flaggedItem;
+        // console.log($scope.detailedInfo);
+        if(response){
+          // response.data.flagged = true;
+
+          // console.log(response.data.flagged)
+          // console.log(response)
+
+          itemFactory.flagUser(response.data).then(function(res){
+            if(res.status !== 200)
+            {
+              console.log("\nunable to flag user");
+            }
+            else if (res.status === 200)
+            {
+              console.log('flag was success, front end');
+            }
+
+          })
+        }
+
+      }, function(error){
+        console.log('Unable to retrieve selling items:', error);
+      })
+    }
+
+    $scope.buyNow = function(){
+          var buyItem = sessionStorage.getItem('selected');
+          console.log('fe buy now item '+ buyItem)
+          itemFactory.findItem(buyItem).then(function(response){
+            console.log(JSON.stringify(response.data));
+
+            if(response){
+              itemFactory.buyItemNow(response.data).then(function(res){
+                if(res.status !== 200)
+                {
+                  console.log("\nunable to fav item");
+                }
+                else if (res.status === 200)
+                {
+                  console.log('fav was success, front end');
+                }
+
+              })
+            }
+
+          }, function(error){
+            console.log('Unable to retrieve selling items:', error);
+          })
+        }
+
+    $scope.favorite = function(){
+      var favItem = sessionStorage.getItem('selected');
+      console.log('fe favorites '+ favItem)
+      itemFactory.findItem(favItem).then(function(response){
+        console.log(JSON.stringify(response.data));
+
+        if(response){
+          itemFactory.favorite(response.data).then(function(res){
+            if(res.status !== 200)
+            {
+              console.log("\nunable to fav item");
+            }
+            else if (res.status === 200)
+            {
+              console.log('fav was success, front end');
+            }
+
+          })
+        }
+
+      }, function(error){
+        console.log('Unable to retrieve selling items:', error);
+      })
     }
   }
 ]);
