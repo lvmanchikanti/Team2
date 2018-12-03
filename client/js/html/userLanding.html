@@ -48,27 +48,43 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
     <p style="color:grey"><font size=6>UFX</font></p>
     </div>
 
+
+
     <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
-    <a href="account.html" class="w3-bar-item w3-button">My Account</a>
-    <a href="postListing.html" class="w3-bar-item w3-button">Create New Listing</a>
-    <a onclick="myAccFunc()" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align" id="myBtn">
-      My Posted Listings <i class="fa fa-caret-down"></i>
-    </a>
-    <div id="demoAcc" class="w3-bar-block w3-hide w3-padding-large w3-medium">
 
-      <a onclick="showMySellings()" class="w3-bar-item w3-button">My Buy Listings</a>
-      <a onclick="showMyBuyings()" class="w3-bar-item w3-button">My Sell Listings</a>
-      
-    <a href="#" class="w3-bar-item w3-button">My Favorites</a>
-    <div ng-controller="accountController">
-      <a href="#" class="w3-bar-item w3-button" ng-click="logout()">Logout</a>
-    </div>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href=""><span class="glyphicon glyphicon-heart "></span> Favorites</a></li>
+            <li><a onclick="myAccFunc()" href="javascript:void(0)" ><span class="glyphicon glyphicon-list"></span> My Listings<i class="fa fa-caret-down"></i></a></li>
 
-     <ul class="nav navbar-nav navbar-right">
-      <div ng-controller="accountController">
-      <p style="color:grey"><font size=6>Hi {{currentuser.name}}!</font></p>
-      </div>
-    </ul>
+
+            <li><a href="account.html"><span class="glyphicon glyphicon-user"></span> My Account</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+
+            <div id="demoAcc" class="w3-bar-block w3-hide w3-padding-large w3-medium">
+
+                <a onclick="showMySellings()" class="w3-bar-item w3-button">My Buy Listings</a>
+                <a onclick="showMyBuyings()" class="w3-bar-item w3-button">My Sell Listings</a>
+
+                <a href="#" class="w3-bar-item w3-button">My Favorites</a>
+                <div ng-controller="accountController">
+                    <a href="#" class="w3-bar-item w3-button" ng-click="logout()">Logout</a>
+                </div>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <div ng-controller="accountController">
+                        <p style="color:grey"><font size=6>Hi {{currentuser.name}}!</font></p>
+                    </div>
+                </ul>
+
+
+
+
+        </ul>
+
+
+
+
 
     </form>
 
