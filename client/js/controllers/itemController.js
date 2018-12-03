@@ -308,11 +308,11 @@ angular.module('items')
           itemFactory.buyItemNow(response.data).then(function(res){
             if(res.status !== 200)
             {
-              console.log("\nunable to fav item");
+              console.log("\nunable to buy item");
             }
             else if (res.status === 200)
             {
-              console.log('fav was success, front end');
+              console.log('buy was success, front end');
             }
 
           })

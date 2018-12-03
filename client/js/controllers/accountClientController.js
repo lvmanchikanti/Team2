@@ -40,7 +40,7 @@ angular.module('user').controller('accountController', ['$scope','userFactory',
     function getUserOrders(){
         console.log('fe get user orders')
         userFactory.getUserOrders().then(function(res){
-            console.log('get user orders fe is '+JSON.stringify(res.data.orders))
+            console.log('get user orders fe is '+ JSON.stringify(res.data.orders))
 
             $scope.myOrders = res.data.orders
         })

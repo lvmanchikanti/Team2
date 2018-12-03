@@ -53,8 +53,8 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
     <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
     <div> <a href="account.html" class="w3-bar-item w3-button">My Account</a></div>
     <div> <a href="postListing.html" class="w3-bar-item w3-button">Create New Listing</a></div>
-    <div> <a onclick="showMySellings()" class="w3-bar-item w3-button">My Buy Listings</a></div>
-    <div> <a onclick="showMyBuyings()" class="w3-bar-item w3-button">My Sell Listings</a></div>
+    <div> <a onclick="showMyBuyings()" class="w3-bar-item w3-button">My Buy Listings</a></div>
+    <div> <a onclick="showMySellings()" class="w3-bar-item w3-button">My Sell Listings</a></div>
     <div> <a onclick="showMyFavorites()" class="w3-bar-item w3-button">My Favorites</a></div>
     <div> <a onclick="showMyOrders()" class="w3-bar-item w3-button">My Orders</a></div>
 
@@ -148,7 +148,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         </div>
       </div>
 
-      <div class="row" id="placeholder2" class="demo-placeholder">
+      <div class="row demo-placeholder" id="placeholder2" >
         <div ng-repeat="items in buyingItems | orderBy: title | filter: itemSearch | filter: itemSearchBar" ng-click="getCurrentItem(items)">
             <div class="w3-col l3 s6">
               <div class="w3-container">
@@ -167,8 +167,8 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         </div>
 
         <div ng-controller="accountController">
-              <div class="row" id="placeholder3" class="demo-placeholder">
-                <div ng-repeat="items in sellingItems | orderBy: title | filter: currentuser.email" ng-click="getCurrentItem(items)">
+              <div class="row demo-placeholder" id="placeholder3">
+                <div ng-repeat="items in sellingItems | orderBy: title | filter: currentuser.email | filter: itemSearch | filter: itemSearchBar" ng-click="getCurrentItem(items)">
                     <div class="w3-col l3 s6">
                       <div class="w3-container">
                         <div class="w3-display-container">
@@ -185,8 +185,8 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 
                 </div>
 
-                <div class="row" id="placeholder4" class="demo-placeholder">
-                  <div ng-repeat="items in buyingItems | orderBy: title | filter: currentuser.email" ng-click="getCurrentItem(items)">
+                <div class="row demo-placeholder" id="placeholder4" >
+                  <div ng-repeat="items in buyingItems | orderBy: title | filter: currentuser.email | filter: itemSearch | filter: itemSearchBar" ng-click="getCurrentItem(items)">
                       <div class="w3-col l3 s6">
                         <div class="w3-container">
                           <div class="w3-display-container">
@@ -203,8 +203,8 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 
                   </div>
 
-                  <div class="row" id="placeholder5" class="demo-placeholder">
-                    <div ng-repeat="items in myOrders | orderBy: title | filter: itemSearch" ng-click="getCurrentItem(items)">
+                  <div class="row demo-placeholder" id="placeholder5">
+                    <div ng-repeat="items in userOrders | orderBy: title | filter: itemSearch | filter: itemSearchBar" ng-click="getCurrentItem(items)">
                         <div class="w3-col l3 s6">
                           <div class="w3-container">
                             <div class="w3-display-container">
@@ -221,8 +221,8 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 
                     </div>
 
-                    <div class="row" id="placeholder6" class="demo-placeholder">
-                      <div ng-repeat="x in favs | orderBy: title" ng-click="getCurrentItem(x)">
+                    <div class="row demo-placeholder" id="placeholder6">
+                      <div ng-repeat="x in favs | orderBy: title | filter: itemSearch | filter: itemSearchBar" ng-click="getCurrentItem(x)">
                           <div class="w3-col l3 s6">
                             <div class="w3-container">
                               <div class="w3-display-container">
