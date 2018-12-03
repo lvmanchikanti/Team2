@@ -60,23 +60,25 @@ app.controller('loginController', ['$rootScope', '$scope', 'Flash', '$timeout', 
             console.log('res is ' + JSON.stringify(res))
             console.log('res.data is ' + JSON.stringify(res.data))
 
-            if(res.status !== 200)
-            {
+            if(res.status === 401) {
                 console.log("\nunable to login user");
                 var message = '<strong>Error!</strong> Username or password is wrong';
                 Flash.create('success', message);
             }
-            else if (res.status === 200)
-            {
+            else if(res.status === 412 ) {
+                console.log("You are not verified");
+                var message = '<strong>Error!</strong> Check your email to verify your account';
+                Flash.create('success', message);
+            }
+            else if (res.status === 200) {
                 console.log('login was success, front end');
                 var message = '<strong>Success!</strong> Login was successful';
                 Flash.create('success', message);
 
                 setTimeout(function(){
-                  if($scope.returnUser.role === 'admin'){
+                  if($scope.returnUser.role === 'admin') {
                     window.location.replace('../html/adminLanding.html');
-                  }
-                  else{
+                  } else {
                     window.location.replace('../html/userLanding.html');
                   }
                 }, 500);

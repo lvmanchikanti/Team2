@@ -3,6 +3,9 @@ var mongoose = require('mongoose');
 var User = require('../models/userServerModel.js');
 var bcrypt = require('bcryptjs');
 var flash = require('express-flash');
+var nev = require('email-verification')(mongoose);
+var randtoken = require('rand-token');
+var nodemailer = require('nodemailer');
 // var body = require('body-parser');
 
 // exports.getAllUsers = function(req, res){
@@ -17,132 +20,176 @@ var flash = require('express-flash');
 // };
 
 exports.authenticateUser = function(req, res){
-    console.log('the username is ' + JSON.stringify(req.body.username));
-    console.log('the password is ' + JSON.stringify(req.body.password));
-
-    // res.send(req.body.username);
     User.findOne({username:req.body.username}, function(err, user) {
-        console.log('the user found is ' + JSON.stringify(user));
-
         if(err) {
             console.log(err);
             return res.status(400).send(err);
         }
-
-        if(user && bcrypt.compareSync(req.body.password, user.password) && (req.body.username === user.username))
-        {
-            console.log('login complete');
-            currSessionUser = req.body.username;
-            res.status(200).send({message: 'test'});
-        }
-
-        else
-        {
+        if(user && bcrypt.compareSync(req.body.password, user.password) && (req.body.username === user.username)) {
+            if(user.verified === 'true') {
+                currSessionUser = req.body.username;
+                res.status(200).send({message: 'test'});
+            } else {
+                console.log('Account not verified');
+                res.status(412).send({message: 'Verify your account'})
+            }
+        } else {
             console.log('Username or password is incorrect');
-            // req.flash('error', 'userame or password is wrong')
-            // return res.status(403).send();
             res.status(401).send({message: 'nope'});
         }
-        // res.end();
-
     })
 };
 
-exports.signupUser = function(req, res){
-    
+exports.signupUser = function(req, res) {
     checkEmailExists()
     function checkEmailExists(){
-        User.findOne({email: req.body.email}, function(err, user){
-            if(err)
-            {
+        User.findOne({email: req.body.email}, function(err, user) {
+            if(err) {
                 console.log(err);
                 return res.status(400).send(err);
             }
-            if(user)
-            {
+            if(user) {
                 console.log('email already taken');
                 res.status(400).send('email ' + req.body.email + ' is already taken');
-            }
-            else{
+            } else {
                 checkUsernameExists();
             }
         })
     }
 
     function checkUsernameExists(){
-        User.findOne({username: req.body.username}, function(err, user){
-            if(err)
-            {
+        User.findOne({username: req.body.username}, function(err, user) {
+            if(err) {
                 console.log(err);
                 return res.status(400).send(err);
             }
-            if(user)
-            {
+            if(user) {
                 console.log('username already taken');
                 res.status(400).send('Username ' + req.body.username + ' is already taken');
-            }
-            else{
+            } else {
                 matchPasswords();
             }
         })
     }
-    // User.findOne({username: req.body.username}, function(err, user){
-    //     if(err)
-    //     {
-    //         console.log(err);
-    //         return res.status(400).send(err);
-    //     }
-    //     if(user)
-    //     {
-    //         console.log('username already taken');
-    //         res.status(400).send('Username ' + req.body.username + ' is already taken');
-    //     }
-    //     else{
-    //         matchPasswords();
-    //     }
-    // })
 
-    // matchPasswords();
     function matchPasswords() {
         console.log(req.body.password)
         console.log(req.body.retypePassword)
 
-        if(req.body.password === req.body.retypePassword)
-        {
-            createUser();
-        }
-        else
-        {
+        if(req.body.password === req.body.retypePassword) {
+            verifyUser();
+        } else {
             console.log('passwords don\'t match');
             res.status(400).send('passwords do not match');
         }
     }
 
-    // createUser();
-    function createUser() {
+    function verifyUser() {
         var newUser = new User(req.body);
-
         newUser.password = bcrypt.hashSync(req.body.password, 10);
 
-        newUser.save(function(err){
-            if(err)
-            {
-                console.log(err)
-                res.status(400).send(err)
+        nev.createTempUser(newUser, function(err, newTempUser) {
+            if(err) {
+                console.log(err);
+                return res.status(400).send(err);
             }
+            if(newTempUser) {
+                var URL = newTempUser[nev.options.URLFieldName];
 
-            else
-            {
-                console.log('added new user to database');
-                // res.sendStatus(200);
-                res.json(newUser);
-
-                // return res.redirect('/login');
+                nev.sendVerificationEmail(newUser.email, URL, function(err, info) {
+                    if (err) {
+                        console.log(err);
+                        return res.status(404).send('failed to send email verification');
+                    } else {
+                        console.log('an email has been sent for verification');
+                        res.json(newUser);
+                    }
+                });
+            } else {
+                res.status(400).send('something went wrong');
             }
         })
     }
-
 };
+
+/*nev.configure({
+    persistentUserModel: User,
+    expirationTime: 86400, // 24 hours
+    URLLength: 48,
+    tempUserModel: null,
+    tempUserCollection: 'temporary_users',
+    emailFieldName: 'email',
+    passwordFieldName: 'password',
+    URLFieldName: 'GENERATED_VERIFYING_URL',
+    shouldSendConfirmation: false,
+    hashingFunction: null,
+
+    verificationURL: 'http://localhost:3000/signup/${URL}',
+    transportOptions: {
+        service: 'Gmail',
+        auth: {
+            user: 'ufxteam@gmail.com',
+            pass: 'adobe321!'
+        }
+    },
+    verifyMailOptions: {
+        from: 'UFX Team <ufxteam@gmail.com>',
+        subject: 'Activate Your UFX Account',
+        html: '<p>Please verify your account by clicking <a href="${URL}">this link</a>. If you are unable to do so, copy and ' +
+                'paste the following link into your browser:</p><p>${URL}</p>',
+        text: 'Please verify your account by clicking the following link, or by copying and pasting it into your browser: ${URL}'
+    }
+    verifySendMailCallback: function(err, info) {
+        if (err) {
+            throw err;
+        } else {
+            console.log(info.response);
+        }
+    }
+}, function(err, options) {
+    if (err) {
+        console.log(err);
+        return;
+    }
+
+    console.log('configured: ' + (typeof options === 'object'));
+});
+
+nev.generateTempUserModel(User, function(err, tempUserModel) {
+    if (err) {
+        console.log(err);
+        return;
+    }
+
+    console.log('generated temp user model: ' + (typeof tempUserModel === 'function'));
+});*/
+
+exports.confirmUser = function(req, res) {
+    var url = req.params.URL;
+
+    nev.confirmTempUser(url, function(err, user) {
+        if (user) {
+            nev.sendConfirmationEmail(user.email, function(err, info) {
+                if (err) {
+                    console.log(err);
+                    return res.status(404).send('ERROR: sending confirmation email FAILED');
+                } else {
+                    user.save(function(err) {
+                        if(err) {
+                            console.log(err)
+                            res.status(400).send(err)
+                        } else {
+                            console.log('added new user to database');
+                            res.json(newUser);
+                        }
+                    })
+                }
+            });
+        } else {
+            return res.status(404).send('Your confirmation link has expired');
+        }
+    });
+}
 
 exports.getAllUser = function(req,res){
     User.find({}, function(err, data){
