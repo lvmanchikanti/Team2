@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <head>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  <link rel='stylesheet' type='text/css' href='../css/newUserLanding.css'>
-  <link rel='stylesheet' type='text/css' href='../css/postListing.css'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel='stylesheet' type='text/css' href='../css/newUserLanding.css'>
+    <link rel='stylesheet' type='text/css' href='../css/postListing.css'>
 
-  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.js'></script>
-  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.css' rel='stylesheet' />
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.css' rel='stylesheet' />
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
 <html>
@@ -139,24 +139,131 @@
 </div>
 <!-- closed modal div -->
 
+<!-- account modal2 div -->
+
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Update Your User Account</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <body ng-app="ufxApp">
+
+                  <div class="container"  style="width:100%" >
+
+                    <div class="row" ng-controller="accountController">
+                      <form novalidate class="simple-form"  style="width:100%">
+
+                          <h4 style="color:black">Hello {{currentuser.name}} </h4>
+
+                          <div class="input-field">
+                              <label for="name">Name:</label>
+                              <input type="text" class="form-control" placeholder={{currentuser.name}} ng-model="updatedUser.name" required><br/>
+                          </div>
+
+                          <div class="input-field">
+                              <label for="username">Username:</label>
+                              <input type="text" class="form-control" placeholder={{currentuser.username}} ng-model="updatedUser.username" required><br/>
+                          </div>
+
+                          <div class="input-field">
+                              <label for="username">Email:</label>
+                              <input type="text" class="form-control" placeholder={{currentuser.email}} ng-model="updatedUser.email" required /><br />
+                          </div>
+
+                          <div class="input-field">
+                              <label for="password">Password:</label>
+                              <input type="password" class="form-control"  placeholder="Enter Password" ng-model="updatedUser.password" required/><br />
+                          </div>
+
+                          <div class="input-field">
+                              <label for="password">Retype Password:</label>
+                              <input type="password" class="form-control" placeholder="Retype Password" ng-model="updatedUser.retypePassword" required/><br />
+                          </div>
+                      </form>
+
+                      <br />
+                      <div class="col-xs-12">
+                          <input id="acctBtn" type="submit" class="btn btn-primary btn-block" ng-click="update()" value="Update">
+                          <input id="acctBtn" type="submit" class="btn btn-primary btn-block" ng-click="delete()" value="Delete">
+                          <a href="userLanding.html"><input id="acctBtn" type="submit" class="btn btn-primary btn-block"  value="Cancel"></a>
+                      </div>
+                    </div>
+                      </div>
+                  </div>
+            </div>
+            <!-- END fh5co-wrapper -->
+
+            <!-- jQuery -->
+
+            <script src="js/morejs/jquery.min.js"></script>
+            <!-- jQuery Easing -->
+            <script src="js/morejs/jquery.easing.1.3.js"></script>
+            <!-- Bootstrap -->
+            <script src="js/morejs/bootstrap.min.js"></script>
+            <!-- Waypoints -->
+            <script src="js/morejs/jquery.waypoints.min.js"></script>
+            <script src="js/morejs/sticky.js"></script>
+
+            <!-- Stellar -->
+            <script src="js/morejs/jquery.stellar.min.js"></script>
+            <!-- Superfish -->
+            <script src="js/morejs/hoverIntent.js"></script>
+            <script src="js/morejs/superfish.js"></script>
+            <!-- Magnific Popup -->
+            <script src="js/morejs/jquery.magnific-popup.min.js"></script>
+            <script src="js/morejs/magnific-popup-options.js"></script>
+            <!-- Date Picker -->
+            <script src="js/morejs/bootstrap-datepicker.min.js"></script>
+            <!-- CS Select -->
+            <script src="js/morejs/classie.js"></script>
+            <script src="js/morejs/selectFx.js"></script>
+
+            <!-- Main JS -->
+            <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
+            <script src="/js/app.js"></script>
+            <script src="../factories/userFactory.js"></script>
+            <script src="../controllers/accountClientController.js"></script>
+            <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
+            </div>
+            </body>
+
+        <div class="modal-footer">
+
+        </div>
+    </div>
+</div>
+
+
+<!-- closed account modal2 div -->
+
 <body ng-app="ufxApp">
-  
   <header id="fh5co-header-section" class="sticky-banner" ng-controller="accountController">
     <div class="container" >
       <div class="nav-header">
-        <!-- <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a> -->
-        <h1 id="fh5co-logo"><a href="userLanding.html" style="text-decoration: none">UFX</a></h1>
+        <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
+        <h1 id="fh5co-logo"><a href="userLanding.html">UFX</a></h1>
         <nav id="fh5co-menu-wrap" role="navigation">
           <!-- <p>
               <input type="text" class="form-control" ng-model="itemSearchBar" id="search" placeholder="Search for...">
 
           </p> -->
           <ul class="sf-menu" id="fh5co-primary-menu">
+            <!-- <div id="user"> -->
+                <!-- <li><p style="color:#F78536"><font size=3>Hi {{currentuser.name}}!</font></p></li> -->
+            <!-- </div> -->
+
             <li><a onclick="showMyFavorites()" class="navbar-brand" style="color:#F78536"><span class="glyphicon glyphicon-heart" title="my favorites"></span></a></li>
             <li><a onclick="showMyOrders()" class="navbar-brand" style="color:#F78536"><span class="glyphicon glyphicon-shopping-cart" title="my orders"></span></a></li>
             <li><a class="navbar-brand" data-toggle="modal" data-target="#exampleModal" style="color:#F78536"><span class="glyphicon glyphicon-plus" title="create a listing"></span></a></li>
-            <li><a href="account.html" class="navbar-brand" style="color:#F78536"><span class="glyphicon glyphicon glyphicon-cog" title="settings"></span></a></li>
-            <li><a href="#" class="navbar-brand" style="color:#00AD7C" ng-click="logout()"><span class="glyphicon glyphicon-log-out" title="logout"></span></a></li>
+
+
+            <li><a data-toggle="modal" data-target="#exampleModal2" class="navbar-brand" style="color:#F78536"><span class="glyphicon glyphicon glyphicon-cog" title="settings"></span></a></li>
+                          <li><a href="#" class="navbar-brand" style="color:#00AD7C" ng-click="logout()"><span class="glyphicon glyphicon-log-out" title="logout"></span></a></li>
 
           </ul>
         </nav>
@@ -169,6 +276,34 @@
 
   <br />
 
+  <!--   ***************************************************************************** THIS ONE THE SEARCH BAR WORKS   ***************************************************************************** -->
+
+		<!-- <header id="fh5co-header-section" class="sticky-banner"> 
+      <div class="container" ng-controller="accountController">
+          <div class="nav-header">
+          <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
+          <h1 id="fh5co-logo"><a href="userLanding.html">UFX</a></h1>
+            <nav id="fh5co-menu-wrap" role="navigation">
+
+              <input type="text" class="form-control" ng-model="itemSearchBar" placeholder="Search for...">
+      
+              <ul class="sf-menu" id="fh5co-primary-menu">
+                <li><p style="color:#F78536"><font size=2>Hi {{currentuser.name}}!</font></p></li>
+                <li><a onclick="showMyFavorites()" class="navbar-brand" style="color:#F78536"><span class="glyphicon glyphicon-heart" title="my favorites"></span></a></li>
+                <li><a onclick="showMyOrders()" class="navbar-brand" style="color:#F78536"><span class="glyphicon glyphicon-shopping-cart" title="my orders"></span></a></li>
+                <li><a class="navbar-brand" data-toggle="modal" data-target="#exampleModal" style="color:#F78536"><span class="glyphicon glyphicon-plus" title="create a listing"></span></a></li>
+                <li><a href="account.html" class="navbar-brand" style="color:#F78536"><span class="glyphicon glyphicon glyphicon-cog" title="settings"></span></a></li>
+                <li><a href="#" class="w3-bar-item w3-button" style="color:#F78536" ng-click="logout()">Logout</a></li>
+                <li><a onclick="showMyBuyings()" class="w3-bar-item w3-button" style="color:#F78536">My Buy Listings</a></div></li>
+                <li><a onclick="showMySellings()" class="w3-bar-item w3-button" style="color:#F78536">My Sell Listings</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </header> -->
+
+<!-- Top menu on small screens -->
+
 <!-- !PAGE CONTENT! -->
 <div class="w3-main" style="margin-left:200px">
 
@@ -177,8 +312,17 @@
   <div ng-controller="ItemController">
     <p>
       <input type="text" class="form-control" id="search" ng-model="itemSearchBar" placeholder="enter search here" />
-      
     </p>
+    <div>
+      <button id= "catBtn" class ="btn btn-secondary small-btn" style="background-color:#F78536" ng-click="filterItems('')">Show All</button>
+      <button id= "catBtn" class ="btn btn-secondary small-btn" style="background-color:#F78536" ng-click="filterItems('Textbooks')">Textbooks</button>
+      <button id= "catBtn" class ="btn btn-secondary small-btn" style="background-color:#F78536" ng-click="filterItems('Electronics')">Electronics</button>
+      <button id= "catBtn" class ="btn btn-secondary small-btn" style="background-color:#F78536" ng-click="filterItems('Vehicles')">Vehicles</button>
+      <button id= "catBtn" class ="btn btn-secondary small-btn" style="background-color:#F78536" ng-click="filterItems('Clothing')">Clothing</button>
+      <button id= "catBtn" class ="btn btn-secondary small-btn" style="background-color:#F78536" ng-click="filterItems('Entertainment')">Entertainment</button>
+      <button id= "catBtn" class ="btn btn-secondary small-btn" style="background-color:#F78536" ng-click="filterItems('Miscellaneous')">Miscellaneous</button>
+      <!-- include dropdown for filter of selling listings, buying listings, my buying, my selling -->
+    </div>
 
     <div>
       
