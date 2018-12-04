@@ -69,198 +69,189 @@
 
 		<!-- end:header-top -->
 	
-		<div class="fh5co-hero">
-			<div class="fh5co-overlay"></div>
-			<div class="fh5co-cover" data-stellar-background-ratio="0.5" style="background-image: url(images/cover_bg_1.jpg);">
-				<div class="desc">
-					<div class="container">
-						<div class="row">
-							<div class="col-sm-5 col-md-5">
-								<div class="tabulation animate-box">
+<div class="fh5co-hero">
+	<div class="fh5co-overlay"></div>
+		<div class="fh5co-cover" data-stellar-background-ratio="0.5" style="background-image: url(images/cover_bg_1.jpg);">
+			<div class="desc">
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-5 col-md-5">
+							<div class="tabulation animate-box">
+								<!-- Nav tabs -->
+								<ul class="nav nav-tabs" role="tablist">
+									<li role="presentation" class="active">
+										<a href="#login" aria-controls="login" role="tab" data-toggle="tab">Log In</a>
+									</li>
+									<li role="presentation">
+										<a href="#signup" aria-controls="signup" role="tab" data-toggle="tab">Sign Up</a>
+									</li>
+								</ul>
 
-								  <!-- Nav tabs -->
-								   <ul class="nav nav-tabs" role="tablist">
-								      <li role="presentation" class="active">
-								      	<a href="#login" aria-controls="login" role="tab" data-toggle="tab">Log In</a>
-								      </li>
-								      <li role="presentation">
-								    	   <a href="#signup" aria-controls="signup" role="tab" data-toggle="tab">Sign Up</a>
-								      </li>
-								   </ul>
-
-								   <!-- Tab panes -->
-									<div ng-controller="loginController" class="tab-content">
-									 <div role="tabpanel" class="tab-pane active" id="login">
+								<!-- Tab panes -->
+								<div class="tab-content">
+									<div role="tabpanel" class="tab-pane active" id="login">
 										<div class="row">
 											<div ng-controller="loginController">
-                          <flash-message duration="3000" show-close="true" on-dismiss="myCallback(flash)"></flash-message>
-                        
-                          <div class="input-field">
-                            <label for="username">Username:</label>
-                            <input type="text" class="form-control" placeholder="Enter Username" ng-model="returnUser.username" required /><br />
-                          </div>
+												<flash-message duration="3000" show-close="true" on-dismiss="myCallback(flash)"></flash-message>
+											
+												<div class="input-field">
+												<label for="username">Username:</label>
+												<input type="text" class="form-control" placeholder="Enter Username" ng-model="returnUser.username" required /><br />
+												</div>
 
-                            <div class="input-field">
-                            <label for="password">Password:</label>
-                            <input type="password" class="form-control" placeholder="Enter Password" ng-model="returnUser.password" required/><br />
-                        </div>
-                        <div class="col-xs-12">
-                          <input type="submit" class="btn btn-primary btn-block" ng-click="login()" value="Login">
-                        </div>
-                      </div>
-									 	</div>
-                  </div>
-                <!-- </div> -->
-                    
-									 <div role="tabpanel" class="tab-pane" id="signup">
-									 	<div class="row">
-                        <div class="input-field">
-                            <label for="username">Name:</label>
-                            <input type="text" class="form-control"  placeholder="Enter Name" ng-model="newUser.name" required /><br />
-                          </div>
-
-                          <div class="input-field">
-                            <label for="username">Username:</label>
-                            <input type="text" class="form-control" placeholder="Enter Username" ng-model="returnUser.username" required /><br />
-                          </div>
-
-                          <div class="input-field">
-                              <label for="username">Email:</label>
-                              <input type="text" class="form-control" placeholder="Enter Email" ng-model="newUser.email" required /><br />
-                            </div>
-
-                          <div class="input-field">
-                            <label for="password">Password:</label>
-                            <input type="password" class="form-control"  placeholder="Enter Password" ng-model="newUser.password" required/><br />
-                          </div>
-
-                          <div class="input-field">
-                              <label for="password">Retype Password:</label>
-                              <input type="password" class="form-control" placeholder="Retype Password" ng-model="newUser.retypePassword" required/><br />
-                          </div>
-
-                          <div class="col-xs-12">
-                            <input type="submit" class="btn btn-primary btn-block" ng-click="signup()" value="Sign Up">
-                          </div>
-										
+												<div class="input-field">
+													<label for="password">Password:</label>
+													<input type="password" class="form-control" placeholder="Enter Password" ng-model="returnUser.password" required/><br />
+												</div>
+												<div class="col-xs-12">
+													<input type="submit" class="btn btn-primary btn-block" ng-click="login()" value="Login">
+												</div>
+											</div>
 										</div>
-                   </div>
-                   </div>
+									</div>
+			
+									<div role="tabpanel" class="tab-pane" id="signup">
+										<div class="row">
+											<div ng-controller="signupController">
+												<div class="input-field">
+														<label for="name">Name:</label>
+														<input type="text" class="form-control"  placeholder="Enter Name" ng-model="newUser.name" required /><br />
+													</div>
 
-              </div>
-            </div>
-							<div class="desc2 animate-box">
-								<div class="col-sm-7 col-sm-push-1 col-md-7 col-md-push-1">
-									<h2>Welcome to UFX</h2>
-									<h3>A website to help you sell or buy items</h3>
-									<span class="price">Sign Up for Free!</span>
-									<!-- <p><a class="btn btn-primary btn-lg" href="#">Get Started</a></p> -->
+													<div class="input-field">
+														<label for="username">Username:</label>
+														<input type="text" class="form-control" placeholder="Enter Username" ng-model="newUser.username" required /><br />
+													</div>
+
+													<div class="input-field">
+														<label for="email">Email:</label>
+														<input type="text" class="form-control" placeholder="Enter Email" ng-model="newUser.email" required /><br />
+													</div>
+
+													<div class="input-field">
+														<label for="password">Password:</label>
+														<input type="password" class="form-control"  placeholder="Enter Password" ng-model="newUser.password" required/><br />
+													</div>
+
+													<div class="input-field">
+														<label for="password">Retype Password:</label>
+														<input type="password" class="form-control" placeholder="Retype Password" ng-model="newUser.retypePassword" required/><br />
+													</div>
+
+													<div class="col-xs-12">
+													<input type="submit" class="btn btn-primary btn-block" ng-click="signup()" value="Sign Up">
+													</div>
+											</div>	
+										</div>
+									</div>
 								</div>
-							</div>
 						</div>
 					</div>
-				</div>
-			</div>
-
-		</div>
-		
-
-		<!-- HELLLLOOO THIS IS GOOOD -->
-		
-
-		<div id="fh5co-features">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-4 animate-box">
-
-						<div class="feature-left">
-							<span class="icon">
-								<i class="icon-hotairballoon"></i>
-							</span>
-							<div class="feature-copy">
-								<h3>Set Locations with Maps</h3>
-								<p>Using the Mapbox Api, users are able to pinpoint the exact location a transaction can be made.</p>
-
-							</div>
+					<div class="desc2 animate-box">
+						<div class="col-sm-7 col-sm-push-1 col-md-7 col-md-push-1">
+							<h2>Welcome to UFX</h2>
+							<h3>A website to help you sell or buy items</h3>
+							<span class="price">Sign Up for Free!</span>
+							<!-- <p><a class="btn btn-primary btn-lg" href="#">Get Started</a></p> -->
 						</div>
 					</div>
-
-					<div class="col-md-4 animate-box">
-						<div class="feature-left">
-							<span class="icon">
-								<i class="icon-search"></i>
-							</span>
-							<div class="feature-copy">
-								<h3>Communication</h3>
-								<p>Users can communicate via email through this website to set up a transaction.</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 animate-box">
-						<div class="feature-left">
-							<span class="icon">
-								<i class="icon-wallet"></i>
-							</span>
-							<div class="feature-copy">
-								<h3>Favoriting and Flagging</h3>
-								<p>Users can favorite listings that they are interested in. Users also have the capability
-                  to flag listings or users.</p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-4 animate-box">
-				</div>
-			</div>
-		</div>
-
-		</div>
-
-	
-		<!-- fh5co-blog-section -->
-		<div id="fh5co-testimonial" style="background-image:url(images/img_bg_1.jpg);">
-		<div class="container">
-			<div class="row animate-box">
-				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<h2>Happy Clients</h2>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-4">
-					<div class="box-testimony animate-box">
-						<blockquote>
-							<span class="quote"><span><i class="icon-quotes-right"></i></span></span>
-							<p>&ldquo;UFX has made my experience at UF so much easier! I was able to buy cheap textbooks and not break the bank.&rdquo;</p>
-						</blockquote>
-						<p class="author">Cynthia Mo <span class="subtext">Student</span></p>
-					</div>
-					
-				</div>
-				<div class="col-md-4">
-					<div class="box-testimony animate-box">
-						<blockquote>
-							<span class="quote"><span><i class="icon-quotes-right"></i></span></span>
-							<p>&ldquo;I don't know what I'd do without UFX. The Map capability made it really easy to meet up with the seller!&rdquo;</p>
-						</blockquote>
-						<p class="author">Lahari Manchikanti </a> <span class="subtext">Student</span></p>
-					</div>
-					
-					
-				</div>
-				<div class="col-md-4">
-					<div class="box-testimony animate-box">
-						<blockquote>
-							<span class="quote"><span><i class="icon-quotes-right"></i></span></span>
-							<p>&ldquo;I needed new headphones ASAP and was able to buy them really fast using UFX. I definitely recommend using this website!&rdquo;</p>
-						</blockquote>
-						<p class="author">Regan Tam <span class="subtext">Student</span></p>
-					</div>
-					
 				</div>
 			</div>
 		</div>
 	</div>
+
+</div>
+
+	<div id="fh5co-features">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4 animate-box">
+
+					<div class="feature-left">
+						<span class="icon">
+							<i class="icon-hotairballoon"></i>
+						</span>
+						<div class="feature-copy">
+							<h3>Set Locations with Maps</h3>
+							<p>Using the Mapbox Api, users are able to pinpoint the exact location a transaction can be made.</p>
+
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-4 animate-box">
+					<div class="feature-left">
+						<span class="icon">
+							<i class="icon-search"></i>
+						</span>
+						<div class="feature-copy">
+							<h3>Communication</h3>
+							<p>Users can communicate via email through this website to set up a transaction.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 animate-box">
+					<div class="feature-left">
+						<span class="icon">
+							<i class="icon-wallet"></i>
+						</span>
+						<div class="feature-copy">
+							<h3>Favoriting and Flagging</h3>
+							<p>Users can favorite listings that they are interested in. Users also have the capability to flag listings or users.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4 animate-box">
+			</div>
+		</div>
+	</div>
+</div>
+
+
+	<!-- fh5co-blog-section -->
+	<div id="fh5co-testimonial" style="background-image:url(images/img_bg_1.jpg);">
+	<div class="container">
+		<div class="row animate-box">
+			<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+				<h2>Happy Clients</h2>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+				<div class="box-testimony animate-box">
+					<blockquote>
+						<span class="quote"><span><i class="icon-quotes-right"></i></span></span>
+						<p>&ldquo;UFX has made my experience at UF so much easier! I was able to buy cheap textbooks and not break the bank.&rdquo;</p>
+					</blockquote>
+					<p class="author">Cynthia Mo <span class="subtext">Student</span></p>
+				</div>
+				
+			</div>
+			<div class="col-md-4">
+				<div class="box-testimony animate-box">
+					<blockquote>
+						<span class="quote"><span><i class="icon-quotes-right"></i></span></span>
+						<p>&ldquo;I don't know what I'd do without UFX. The Map capability made it really easy to meet up with the seller!&rdquo;</p>
+					</blockquote>
+					<p class="author">Lahari Manchikanti </a> <span class="subtext">Student</span></p>
+				</div>
+				
+				
+			</div>
+			<div class="col-md-4">
+				<div class="box-testimony animate-box">
+					<blockquote>
+						<span class="quote"><span><i class="icon-quotes-right"></i></span></span>
+						<p>&ldquo;I needed new headphones ASAP and was able to buy them really fast using UFX. I definitely recommend using this website!&rdquo;</p>
+					</blockquote>
+					<p class="author">Regan Tam <span class="subtext">Student</span></p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 		<footer>
 			<div id="footer">
 				<div class="container">
