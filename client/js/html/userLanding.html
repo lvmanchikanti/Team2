@@ -173,6 +173,136 @@ li a:hover {
 </div>
 <!-- closed modal div -->
 
+
+
+
+<!-- account modal2 div -->
+
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Update Your User Account</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <body ng-app="ufxApp">
+
+
+              <!--  <div id="fh5co-wrapper">
+                    <div id="fh5co-page">
+-->
+
+                        <!--<div class="fh5co-hero">-->
+                            <!--<div class="fh5co-overlay"></div>-->
+                            <!--<div class="fh5co-cover" data-stellar-background-ratio="0.5" style="background-image: url(images/cover_bg_1.jpg);">-->
+                                <!--<div class="desc3">-->
+                                    <div class="container"  style="width:100%" >
+
+                                            <div class="row" ng-controller="accountController">
+                                                <form novalidate class="simple-form"  style="width:100%">
+
+                                                    <h4 style="color:black">Hello {{currentuser.name}} </h4>
+
+                                                    <div class="input-field">
+                                                        <label for="name">Name:</label>
+                                                        <input type="text" class="form-control" placeholder={{currentuser.name}} ng-model="updatedUser.name" required><br/>
+                                                    </div>
+
+                                                    <div class="input-field">
+                                                        <label for="username">Username:</label>
+                                                        <input type="text" class="form-control" placeholder={{currentuser.username}} ng-model="updatedUser.username" required><br/>
+                                                    </div>
+
+                                                    <div class="input-field">
+                                                        <label for="username">Email:</label>
+                                                        <input type="text" class="form-control" placeholder={{currentuser.email}} ng-model="updatedUser.email" required /><br />
+                                                    </div>
+
+                                                    <div class="input-field">
+                                                        <label for="password">Password:</label>
+                                                        <input type="password" class="form-control"  placeholder="Enter Password" ng-model="updatedUser.password" required/><br />
+                                                    </div>
+
+                                                    <div class="input-field">
+                                                        <label for="password">Retype Password:</label>
+                                                        <input type="password" class="form-control" placeholder="Retype Password" ng-model="updatedUser.retypePassword" required/><br />
+                                                    </div>
+                                                </form>
+
+
+
+
+
+                                                <br />
+                                                <div class="col-xs-12">
+                                                    <input id="acctBtn" type="submit" class="btn btn-primary btn-block" ng-click="update()" value="Update">
+                                                    <input id="acctBtn" type="submit" class="btn btn-primary btn-block" ng-click="delete()" value="Delete">
+                                                    <a href="userLanding.html"><input id="acctBtn" type="submit" class="btn btn-primary btn-block"  value="Cancel"></a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+               <!-- </div>-->
+
+                <!-- END fh5co-page -->
+
+            </div>
+            <!-- END fh5co-wrapper -->
+
+            <!-- jQuery -->
+
+            <script src="js/morejs/jquery.min.js"></script>
+            <!-- jQuery Easing -->
+            <script src="js/morejs/jquery.easing.1.3.js"></script>
+            <!-- Bootstrap -->
+            <script src="js/morejs/bootstrap.min.js"></script>
+            <!-- Waypoints -->
+            <script src="js/morejs/jquery.waypoints.min.js"></script>
+            <script src="js/morejs/sticky.js"></script>
+
+            <!-- Stellar -->
+            <script src="js/morejs/jquery.stellar.min.js"></script>
+            <!-- Superfish -->
+            <script src="js/morejs/hoverIntent.js"></script>
+            <script src="js/morejs/superfish.js"></script>
+            <!-- Magnific Popup -->
+            <script src="js/morejs/jquery.magnific-popup.min.js"></script>
+            <script src="js/morejs/magnific-popup-options.js"></script>
+            <!-- Date Picker -->
+            <script src="js/morejs/bootstrap-datepicker.min.js"></script>
+            <!-- CS Select -->
+            <script src="js/morejs/classie.js"></script>
+            <script src="js/morejs/selectFx.js"></script>
+
+            <!-- Main JS -->
+            <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
+            <script src="/js/app.js"></script>
+            <script src="../factories/userFactory.js"></script>
+            <script src="../controllers/accountClientController.js"></script>
+            <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
+            </div>
+            </body>
+
+        <div class="modal-footer">
+
+        </div>
+    </div>
+</div>
+
+
+<!-- closed account modal2 div -->
+
+
+
 <body ng-app="ufxApp">
   <header id="fh5co-header-section" class="sticky-banner" ng-controller="accountController">
     <div class="container" >
@@ -192,8 +322,10 @@ li a:hover {
             <li><a onclick="showMyFavorites()" class="navbar-brand" style="color:#F78536"><span class="glyphicon glyphicon-heart" title="my favorites"></span></a></li>
             <li><a onclick="showMyOrders()" class="navbar-brand" style="color:#F78536"><span class="glyphicon glyphicon-shopping-cart" title="my orders"></span></a></li>
             <li><a class="navbar-brand" data-toggle="modal" data-target="#exampleModal" style="color:#F78536"><span class="glyphicon glyphicon-plus" title="create a listing"></span></a></li>
-            <li><a href="account.html" class="navbar-brand" style="color:#F78536"><span class="glyphicon glyphicon glyphicon-cog" title="settings"></span></a></li>
-            <li><a href="#" class="navbar-brand" style="color:#00AD7C" ng-click="logout()"><span class="glyphicon glyphicon-log-out" title="logout"></span></a></li>
+
+
+            <li><a data-toggle="modal" data-target="#exampleModal2" class="navbar-brand" style="color:#F78536"><span class="glyphicon glyphicon glyphicon-cog" title="settings"></span></a></li>
+                          <li><a href="#" class="navbar-brand" style="color:#00AD7C" ng-click="logout()"><span class="glyphicon glyphicon-log-out" title="logout"></span></a></li>
 
           </ul>
         </nav>
