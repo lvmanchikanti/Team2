@@ -1,16 +1,14 @@
 <!DOCTYPE html>
-
-
 <head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel='stylesheet' type='text/css' href='../css/newUserLanding.css'>
-    <link rel='stylesheet' type='text/css' href='../css/postListing.css'>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel='stylesheet' type='text/css' href='../css/newUserLanding.css'>
+  <link rel='stylesheet' type='text/css' href='../css/postListing.css'>
 
-    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.js'></script>
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.css' rel='stylesheet' />
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.css' rel='stylesheet' />
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
 <html>
@@ -19,40 +17,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="newUserLanding.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<style>
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding-left:30vh;
-    padding-bottom: 0px;
-    overflow: hidden;
-}
-
-li {
-  display: inline;
-}
-
-li a {
-    /* display:inline; */
-    color: black;
-    text-align: center;
-    padding: 14px 16px;
-
-    text-decoration: none;
-}
-
-li a:hover {
-    background-color: #f1f1f1;
-}
-/* .w3-sidebar a {font-family: "Roboto", sans-serif} */
-/* body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;} */
-</style>
-
-
-
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <!-- modal for bootstrap -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -174,21 +140,18 @@ li a:hover {
 <!-- closed modal div -->
 
 <body ng-app="ufxApp">
+  
   <header id="fh5co-header-section" class="sticky-banner" ng-controller="accountController">
     <div class="container" >
       <div class="nav-header">
-        <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
-        <h1 id="fh5co-logo"><a href="userLanding.html">UFX</a></h1>
+        <!-- <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a> -->
+        <h1 id="fh5co-logo"><a href="userLanding.html" style="text-decoration: none">UFX</a></h1>
         <nav id="fh5co-menu-wrap" role="navigation">
           <!-- <p>
               <input type="text" class="form-control" ng-model="itemSearchBar" id="search" placeholder="Search for...">
 
           </p> -->
           <ul class="sf-menu" id="fh5co-primary-menu">
-            <!-- <div id="user"> -->
-                <!-- <li><p style="color:#F78536"><font size=3>Hi {{currentuser.name}}!</font></p></li> -->
-            <!-- </div> -->
-
             <li><a onclick="showMyFavorites()" class="navbar-brand" style="color:#F78536"><span class="glyphicon glyphicon-heart" title="my favorites"></span></a></li>
             <li><a onclick="showMyOrders()" class="navbar-brand" style="color:#F78536"><span class="glyphicon glyphicon-shopping-cart" title="my orders"></span></a></li>
             <li><a class="navbar-brand" data-toggle="modal" data-target="#exampleModal" style="color:#F78536"><span class="glyphicon glyphicon-plus" title="create a listing"></span></a></li>
@@ -206,34 +169,6 @@ li a:hover {
 
   <br />
 
-  <!--   ***************************************************************************** THIS ONE THE SEARCH BAR WORKS   ***************************************************************************** -->
-
-		<!-- <header id="fh5co-header-section" class="sticky-banner"> 
-      <div class="container" ng-controller="accountController">
-          <div class="nav-header">
-          <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
-          <h1 id="fh5co-logo"><a href="userLanding.html">UFX</a></h1>
-            <nav id="fh5co-menu-wrap" role="navigation">
-
-              <input type="text" class="form-control" ng-model="itemSearchBar" placeholder="Search for...">
-      
-              <ul class="sf-menu" id="fh5co-primary-menu">
-                <li><p style="color:#F78536"><font size=2>Hi {{currentuser.name}}!</font></p></li>
-                <li><a onclick="showMyFavorites()" class="navbar-brand" style="color:#F78536"><span class="glyphicon glyphicon-heart" title="my favorites"></span></a></li>
-                <li><a onclick="showMyOrders()" class="navbar-brand" style="color:#F78536"><span class="glyphicon glyphicon-shopping-cart" title="my orders"></span></a></li>
-                <li><a class="navbar-brand" data-toggle="modal" data-target="#exampleModal" style="color:#F78536"><span class="glyphicon glyphicon-plus" title="create a listing"></span></a></li>
-                <li><a href="account.html" class="navbar-brand" style="color:#F78536"><span class="glyphicon glyphicon glyphicon-cog" title="settings"></span></a></li>
-                <li><a href="#" class="w3-bar-item w3-button" style="color:#F78536" ng-click="logout()">Logout</a></li>
-                <li><a onclick="showMyBuyings()" class="w3-bar-item w3-button" style="color:#F78536">My Buy Listings</a></div></li>
-                <li><a onclick="showMySellings()" class="w3-bar-item w3-button" style="color:#F78536">My Sell Listings</a></li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </header> -->
-
-<!-- Top menu on small screens -->
-
 <!-- !PAGE CONTENT! -->
 <div class="w3-main" style="margin-left:200px">
 
@@ -242,8 +177,11 @@ li a:hover {
   <div ng-controller="ItemController">
     <p>
       <input type="text" class="form-control" id="search" ng-model="itemSearchBar" placeholder="enter search here" />
+      
     </p>
+
     <div>
+      
       <button id= "catBtn" class ="btn btn-secondary small-btn" style="background-color:#F78536" ng-click="filterItems('')">Show All</button>
       <button id= "catBtn" class ="btn btn-secondary small-btn" style="background-color:#F78536" ng-click="filterItems('Textbooks')">Textbooks</button>
       <button id= "catBtn" class ="btn btn-secondary small-btn" style="background-color:#F78536" ng-click="filterItems('Electronics')">Electronics</button>
@@ -251,10 +189,19 @@ li a:hover {
       <button id= "catBtn" class ="btn btn-secondary small-btn" style="background-color:#F78536" ng-click="filterItems('Clothing')">Clothing</button>
       <button id= "catBtn" class ="btn btn-secondary small-btn" style="background-color:#F78536" ng-click="filterItems('Entertainment')">Entertainment</button>
       <button id= "catBtn" class ="btn btn-secondary small-btn" style="background-color:#F78536" ng-click="filterItems('Miscellaneous')">Miscellaneous</button>
+
       <!-- include dropdown for filter of selling listings, buying listings, my buying, my selling -->
     </div>
 
     <br />
+
+    <div class="onoffswitch">
+        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+        <label class="onoffswitch-label" for="myonoffswitch">
+            <span class="onoffswitch-inner"></span>
+            <span class="onoffswitch-switch"></span>
+        </label>
+    </div>
 
     <div>
       <a onclick="showSelling()" class="w3-bar-item w3-button">Selling Listings</a>
@@ -269,11 +216,15 @@ li a:hover {
           <div class="w3-col l3 s6">
             <div class="w3-container">
               <div class="w3-display-container">
-                <img src="../images/add-item-icon.png" style="width:30%" class="imgBorder">
+                <a href="/js/html/newListing.html">
+                  <img src="../images/add-item-icon.png" style="width:100%" class="imgHov">
+                </a>
+                <!-- <div class="middle">
+                  <div class="text">
+                    <a href="/js/html/listing.html"></a>Buy Now</a>
+                  </div>
+                </div> -->
                 <p>{{items.title}}<br><b>${{items.price}}</b></p>
-                <div class="w3-display-middle w3-display-hover">
-                  <a href="/js/html/listing.html" class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></a>
-                </div>
               </div>
             </div>
           </div>
@@ -285,7 +236,7 @@ li a:hover {
             <div class="w3-col l3 s6">
               <div class="w3-container">
                 <div class="w3-display-container">
-                  <img src="/js/images/add-item-icon.png" style="width:30%" class="imgBorder">
+                  <img src="/js/images/add-item-icon.png" style="width:30%" class="imgHov">
                     <p>{{items.title}}<br><b>${{items.price}}</b></p>
                      <div class="w3-display-middle w3-display-hover">
                         <!-- <button ng-click="getCurrentItem(items)" class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></button> -->
@@ -304,7 +255,7 @@ li a:hover {
                     <div class="w3-col l3 s6">
                       <div class="w3-container">
                         <div class="w3-display-container">
-                          <img src="/js/images/add-item-icon.png" style="width:30%" class="imgBorder">
+                          <img src="/js/images/add-item-icon.png" style="width:30%" class="imgHov">
                             <p>{{items.title}}<br><b>${{items.price}}</b></p>
                              <div class="w3-display-middle w3-display-hover">
                                 <!-- <button ng-click="getCurrentItem(items)" class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></button> -->
@@ -322,7 +273,7 @@ li a:hover {
                       <div class="w3-col l3 s6">
                         <div class="w3-container">
                           <div class="w3-display-container">
-                            <img src="/js/images/add-item-icon.png" style="width:30%" class="imgBorder">
+                            <img src="/js/images/add-item-icon.png" style="width:30%" class="imgHov">
                               <p>{{items.title}}<br><b>${{items.price}}</b></p>
                                <div class="w3-display-middle w3-display-hover">
                                   <!-- <button ng-click="getCurrentItem(items)" class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></button> -->
