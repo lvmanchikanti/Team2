@@ -76,7 +76,7 @@ app.controller('loginController', ['$rootScope', '$scope', 'Flash', '$timeout', 
                 Flash.create('success', message);
 
                 setTimeout(function(){
-                  if($scope.returnUser.role === 'admin') {
+                  if($scope.returnUser.role === "admin") {
                     window.location.replace('../html/adminLanding.html');
                   } else {
                     window.location.replace('../html/userLanding.html');
