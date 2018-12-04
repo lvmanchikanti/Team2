@@ -63,7 +63,7 @@ angular.module('user').controller('signupController', ['$scope','userFactory',
                 {
                     console.log('signup was success, front end');
 
-                    window.location.replace('../html/login.html');
+                    window.location.replace('../html/signup2.html');
                 }
                $scope.newUser = {};
            })

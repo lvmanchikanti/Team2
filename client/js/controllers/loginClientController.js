@@ -101,6 +101,14 @@ app.controller('loginController', ['$rootScope', '$scope', 'Flash', '$timeout', 
         // var message = '<strong>Well done!</strong> You successfully read this important alert message.';
         // Flash.create('success', message);
     };
+    $scope.changePass = function() {
+        userFactory.sendPassLink($scope.returnUser).then(function(res, err) {
+            if(res.status === 400)
+                console.log("something went wrong");
+            else
+                window.location.replace('../html/login.html');
+        })
+    }
     $scope.info = function() {
         var message = '<strong>Heads up!</strong> This alert needs your attention, but it\'s not super important.';
         Flash.create('info', message);

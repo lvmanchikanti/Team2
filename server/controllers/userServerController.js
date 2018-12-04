@@ -3,9 +3,10 @@ var mongoose = require('mongoose');
 var User = require('../models/userServerModel.js');
 var bcrypt = require('bcryptjs');
 var flash = require('express-flash');
-var nev = require('email-verification')(mongoose);
-var randtoken = require('rand-token');
+// var nev = require('email-verification')(mongoose);
+// var randtoken = require('rand-token');
 var nodemailer = require('nodemailer');
+
 // var body = require('body-parser');
 
 // exports.getAllUsers = function(req, res){
@@ -26,7 +27,10 @@ exports.authenticateUser = function(req, res){
             return res.status(400).send(err);
         }
         if(user && bcrypt.compareSync(req.body.password, user.password) && (req.body.username === user.username)) {
-            if(user.verified === 'true') {
+            if(user.banned === true) {
+                res.status(400).send({message: 'you have been banned'});
+            }
+            else if(user.verified === true) {
                 currSessionUser = req.body.username;
                 res.status(200).send({message: 'test'});
             } else {
@@ -77,131 +81,214 @@ exports.signupUser = function(req, res) {
         console.log(req.body.retypePassword)
 
         if(req.body.password === req.body.retypePassword) {
-            verifyUser();
+            createUser();
         } else {
             console.log('passwords don\'t match');
             res.status(400).send('passwords do not match');
         }
     }
 
-    function verifyUser() {
+    function createUser() {
         var newUser = new User(req.body);
         newUser.password = bcrypt.hashSync(req.body.password, 10);
 
-        nev.createTempUser(newUser, function(err, newTempUser) {
+        newUser.save(function(err){
             if(err) {
-                console.log(err);
-                return res.status(400).send(err);
-            }
-            if(newTempUser) {
-                var URL = newTempUser[nev.options.URLFieldName];
-
-                nev.sendVerificationEmail(newUser.email, URL, function(err, info) {
-                    if (err) {
-                        console.log(err);
-                        return res.status(404).send('failed to send email verification');
-                    } else {
-                        console.log('an email has been sent for verification');
-                        res.json(newUser);
-                    }
-                });
+                console.log(err)
+                res.status(400).send(err)
             } else {
-                res.status(400).send('something went wrong');
+                console.log('added new user to database');
+                verifyUser();
+                res.json(newUser);
             }
         })
     }
+
+    function verifyUser() {
+        // create reusable transporter object using the default SMTP transport
+        var transporter = nodemailer.createTransport({
+            service: "Gmail",
+            auth: {
+                user: "ufxteam",
+                pass: "adobe321!"
+            }
+        });
+
+        // setup email data with unicode symbols
+        var mailOptions = {
+            from: '"GLACKR" <ufxteam@gmail.com>', // sender address
+            to: req.body.email, // receiver address
+            subject: 'Activate Your UFX Account', // Subject line
+            text: 'Please verify your account by clicking the following link, or by copying and pasting it into your browser: ${URL}', // plain text body
+            html: '<p>Please verify your account by clicking <a href="${URL}">this link</a>. If you are unable to do so, copy and ' +
+                'paste the following link into your browser:</p><p>${URL}</p>' // html body
+        };
+
+        // generate unique URL id using the _id field in MongoDB
+        User.findOne( {username: req.body.username}, function(err, user) {
+            if(err) {
+                console.log(err);
+                return res.status(400).send(err)
+            }
+            if(!user) {
+                console.log('user not found');
+                return res.status(404).send('user not found')
+            }
+
+            // replace ${URL} with the verification URL
+            var r = /\$\{URL\}/g;
+            var URL = 'http://localhost:3000/signup/' + user._id;
+            mailOptions.text = mailOptions.text.replace(r, URL);
+            mailOptions.html = mailOptions.html.replace(r, URL);
+
+            // send mail with defined transport object
+            transporter.sendMail(mailOptions, (err, info) => {
+                if (err) {
+                    return console.log(err);
+                }
+                console.log('Verification email sent');
+            });
+            }
+        );
+    }
 };
 
-/*nev.configure({
-    persistentUserModel: User,
-    expirationTime: 86400, // 24 hours
-    URLLength: 48,
-    tempUserModel: null,
-    tempUserCollection: 'temporary_users',
-    emailFieldName: 'email',
-    passwordFieldName: 'password',
-    URLFieldName: 'GENERATED_VERIFYING_URL',
-    shouldSendConfirmation: false,
-    hashingFunction: null,
-
-    verificationURL: 'http://localhost:3000/signup/${URL}',
-    transportOptions: {
-        service: 'Gmail',
-        auth: {
-            user: 'ufxteam@gmail.com',
-            pass: 'adobe321!'
-        }
-    },
-    verifyMailOptions: {
-        from: 'UFX Team <ufxteam@gmail.com>',
-        subject: 'Activate Your UFX Account',
-        html: '<p>Please verify your account by clicking <a href="${URL}">this link</a>. If you are unable to do so, copy and ' +
-                'paste the following link into your browser:</p><p>${URL}</p>',
-        text: 'Please verify your account by clicking the following link, or by copying and pasting it into your browser: ${URL}'
-    }
-    verifySendMailCallback: function(err, info) {
-        if (err) {
-            throw err;
-        } else {
-            console.log(info.response);
-        }
-    }
-}, function(err, options) {
-    if (err) {
-        console.log(err);
-        return;
-    }
-
-    console.log('configured: ' + (typeof options === 'object'));
-});
-
-nev.generateTempUserModel(User, function(err, tempUserModel) {
-    if (err) {
-        console.log(err);
-        return;
-    }
-
-    console.log('generated temp user model: ' + (typeof tempUserModel === 'function'));
-});*/
-
 exports.confirmUser = function(req, res) {
-    var url = req.params.URL;
+    // grab the id from the URL
+    console.log('URL is ' + req.params.URL);
+    var id = req.params.URL;
 
-    nev.confirmTempUser(url, function(err, user) {
-        if (user) {
-            nev.sendConfirmationEmail(user.email, function(err, info) {
-                if (err) {
-                    console.log(err);
-                    return res.status(404).send('ERROR: sending confirmation email FAILED');
-                } else {
-                    user.save(function(err) {
-                        if(err) {
-                            console.log(err)
-                            res.status(400).send(err)
-                        } else {
-                            console.log('added new user to database');
-                            res.json(newUser);
-                        }
-                    })
-                }
-            });
-        } else {
-            return res.status(404).send('Your confirmation link has expired');
+    // find a matching user using the id
+    User.findById(id).exec(function(err, user) {
+        if(err) {
+            console.log(err);
+            return res.status(400).send(err);
         }
-    });
+        if(!user) {
+            console.log('your link has expired');
+            return res.status(404).send('user not found');
+        }
+        verifyUser();
+    })
+
+    function verifyUser() {
+        // set the verified field to 'true' and stop the document from expiring
+        var verify = {
+            $set: {"verified": true},
+            $unset: {expire_at: ""}
+        }
+
+        User.findOneAndUpdate({_id: id}, verify, function(err) {
+            if(err) {
+                console.log('user unable to be verified');
+                return res.status(400).send(err);
+            } else {
+                console.log('user has been verified');
+                return res.redirect('http://localhost:3000/js/html/verified.html');
+            }
+        })
+    }
 }
 
-exports.getAllUser = function(req,res){
-    User.find({}, function(err, data){
-        if(err)
-        {
+exports.sendPassLink = function(req, res) {
+    // create reusable transporter object using the default SMTP transport
+    var transporter = nodemailer.createTransport({
+        service: "Gmail",
+        auth: {
+            user: "ufxteam",
+            pass: "adobe321!"
+        }
+    });
+    User.findOne({email: req.body.email}, function(err, user) {
+        if(err) {
+            console.log(err);
+            return res.status(400).send(err);
+        }
+        if(!user) {
+            console.log('no such user');
+            return res.status(400).send('User does not exist');
+        } else {
+            var mailOptions = {
+                from: '"GLACKR" <ufxteam@gmail.com>', // sender address
+                to: req.body.email, // receiver address
+                subject: 'Change password link', // Subject line
+                text: 'Change your password by clicking the following link, or by copying and pasting it into your browser: ${URL}', // plain text body
+                html: '<p>Click this link <a href="${URL}">this link</a> to change your password. If you are unable to do so, copy and ' +
+                    'paste the following link into your browser:</p><p>${URL}</p>' // html body
+            };
+
+            // replace ${URL} with the password change URL
+            var r = /\$\{URL\}/g;
+            var URL = 'http://localhost:3000/account/forgot/' + user._id;
+            mailOptions.text = mailOptions.text.replace(r, URL);
+            mailOptions.html = mailOptions.html.replace(r, URL);
+
+            // send mail with defined transport object
+            transporter.sendMail(mailOptions, (err, info) => {
+                if (err) {
+                    return console.log(err);
+                }
+                console.log('Password change email sent');
+            });
+        }
+    })
+}
+
+exports.updatePass = function(req, res) {
+    // grab the id from the URL
+    console.log('URL is ' + req.params.URL);
+    var id = req.params.URL;
+
+    // find a matching user using the id
+    User.findById(id).exec(function(err, user) {
+        if(err) {
+            console.log(err);
+            return res.status(400).send(err);
+        }
+        if(!user) {
+            console.log('user doesn\'t have an account');
+            return res.status(404).send('user not found');
+        }
+        currSessionUser = user.username;
+        return res.redirect('http://localhost:3000/js/html/account.html');
+    })
+
+    /*function matchPasswords() {
+        if(req.body.password === req.body.retypePassword) {
+            createUser();
+        } else {
+            console.log('passwords don\'t match');
+            res.status(400).send('passwords do not match');
+        }
+    }
+
+    function changePass() {
+        var newUserInfo = {
+            password: user.password
+        }
+
+        User.updateOne(newUserInfo, function(err) {
+            if(err) {
+                console.log('user unable to update');
+                return res.status(400).send(err);
+            } else {
+                console.log('user pass has been updated');
+                return res.status(200).send('Your password has been changed!');
+            }
+        })
+    }*/
+}
+
+exports.getAllUser = function(req,res) {
+    User.find({}, function(err, data) {
+        if(err) {
             console.log(err)
             return res.status(400).send(err);
         }
         res.json(data);
     })
 };
-exports.getCurrentUser = function(req,res){
+exports.getCurrentUser = function(req,res) {
 
     console.log('backend get curr user')
     console.log(JSON.stringify(currSessionUser))
@@ -300,6 +387,7 @@ exports.updateUser = function(req, res){
             })
         }
     })
+
     function update(){
         console.log('inside update backend')
         console.log(JSON.stringify(req.body));
@@ -329,10 +417,7 @@ exports.updateUser = function(req, res){
                 return res.status(200).send('successful update')
             }
         })
-
-
     }
-
 };
 
 exports.logoutUser = function(req, res) {
@@ -340,8 +425,6 @@ exports.logoutUser = function(req, res) {
     currSessionUser = null;
     return res.status(200).send("Logged out!");
 };
-
-
 
 exports.deleteUser = function(req,res){
     console.log('delete user ' + JSON.stringify(currSessionUser));

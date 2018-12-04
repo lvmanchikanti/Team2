@@ -22,6 +22,9 @@ router.route('/admin')
 router.route('/admin/:_id')
   .delete(userCtrl.delete);
 
+router.route('/forgot/:URL')
+	.get(userCtrl.updatePass);
+
 // router.param('_id', userCtrl.userByID);
  router.param('_id', userCtrl.userByID);
 

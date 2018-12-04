@@ -15,38 +15,18 @@
 
 <body ng-app="ufxApp" style="background:linear-gradient(0deg, #9dc66b 5%, #4fa49a 30%, #4361c2);">
 <div ng-controller="loginController">
-        <a ng-init="logout()"></a>
  <div class="container login-container">
-                <div class="col-d-6 login-form-2">
+    <div class="col-d-6 login-form-2">
         <!-- <form novalidate class="simple-form"> -->
 
-        <h3>Login</h3>
-      
-        <flash-message duration="3000" show-close="true" on-dismiss="myCallback(flash)"></flash-message>
+        <h3>Forgot Your Password</h3>
 
-        Username: <input type="text" placeholder="Enter Username" ng-model="returnUser.username" required><br/>
+        Email: <input type="text" placeholder="Enter email" ng-model="returnUser.email" required><br/>
 
-        Password: <input type="password" placeholder="Enter Password" ng-model="returnUser.password" required><br/>
+        <div style="text-align: center">
+            <button type="submit" class="btnSubmit" ng-click="changePass()">Send Me A Link</button>
+        </div>
 
-   <div style="text-align: center">
-        <button type="submit" class="btnSubmit" ng-click="login()">Login</button>
-
-        <a href="changePass.html">
-            <button type="button" class="btnSubmit">Forgot Your Password?</button>
-        </a>
-                
-        <a href="signup.html">
-            <button type="button" class="btnSubmit">Sign Up</button>       
-        </a>
-
-        <a href="homeLanding.html">
-            <button type="button" class="btnSubmit">Cancel</button>     
-        </a>
-    </div>
-        <!-- </form> -->
-       
-
-</div>
     </div>
 
     <!-- <div class="container" style="background-color:#f1f1f1">

@@ -4,43 +4,17 @@ var mongoose = require('mongoose'),
 
 /* Create your schema */
 var userSchema = new Schema({
-  name: {
-    type: String,
-    required: true
-  },
-  username: {
-    type: String,
-    required: true,
-    unique: true
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: true
-  },
-  password: {
-    type: String,
-    required: true
-  },
-  favorite: {
-    type: [Number],
-    'default' : []
-  },
-  rating: {
-    type: Number
-  },
-  banned: {
-    type: Boolean,
-    'default': false
-  },
-  verified: {
-    type: Boolean, 'default': false
-  },
-  role: {
-    type: String,
-    required: true,
-    'default': 'user'
-  }
+  name: {type: String, required: true},
+  username: {type: String, required: true, unique: true},
+  email: {type: String, required: true, unique: true},
+  password: {type: String, required: true},
+  favorite: {type: [Number], 'default' : []},
+  // orders: {type: [itemSchema], 'default':[]},
+  rating: {type: Number},
+  banned: {type: Boolean, 'default': false},
+  verified: {type: Boolean, 'default': false},
+  role: {type: String, required: true, 'default': 'user'},
+  expire_at: {type: Date, 'default': Date.now, expires: 86400}
 });
 
 /* Use your schema to instantiate a Mongoose model */

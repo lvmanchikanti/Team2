@@ -25,6 +25,10 @@ angular.module('ufxApp').factory('userFactory', function($http) {
                 ;
         },
 
+        sendPassLink: function(returnUser) {
+            return $http.put('/login/auth', returnUser);
+        },
+
         // getAllUsers: function(){
         //     return $http.get('http://localhost:3000/account/getinfo');
         // },
