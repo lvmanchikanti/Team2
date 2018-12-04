@@ -166,7 +166,7 @@ exports.confirmUser = function(req, res) {
         }
         if(!user) {
             console.log('your link has expired');
-            return res.status(404).send('user not found');
+            return res.redirect('http://localhost:3000/js/html/expired.html');
         }
         verifyUser();
     })
@@ -213,7 +213,7 @@ exports.sendPassLink = function(req, res) {
                 to: req.body.email, // receiver address
                 subject: 'Change password link', // Subject line
                 text: 'Change your password by clicking the following link, or by copying and pasting it into your browser: ${URL}', // plain text body
-                html: '<p>Click this link <a href="${URL}">this link</a> to change your password. If you are unable to do so, copy and ' +
+                html: '<p>Click <a href="${URL}">this link</a> to change your password. If you are unable to do so, copy and ' +
                     'paste the following link into your browser:</p><p>${URL}</p>' // html body
             };
 
