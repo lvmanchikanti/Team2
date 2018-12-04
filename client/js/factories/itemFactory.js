@@ -25,6 +25,10 @@ angular.module("ufxApp").factory('itemFactory', function($http) {
         currId = listingId;
       },
 
+      findItem: function(_id) {
+        return $http.get('http://localhost:3000/selling/' + _id);
+      },
+
       findSellingItem: function(_id) {
         return $http.get('/selling/' + _id);
       },
@@ -40,6 +44,32 @@ angular.module("ufxApp").factory('itemFactory', function($http) {
       deleteBuying: function(_id) {
         return $http.delete('/buying/' + _id);
       },
+
+      flagItem: function(flagged){
+        console.log('in flac item fac')
+        return $http.post('http://localhost:3000/selling/flagItem', flagged);
+      },
+
+      buyItemNow: function(buy){
+        console.log('in buy now item fac')
+        return $http.post('http://localhost:3000/selling/buyNow', buy);
+      },
+
+      flagUser: function(flagged){
+        console.log('in flac item fac')
+        return $http.post('http://localhost:3000/selling/flagUser', flagged);
+      },
+
+      favorite: function(like){
+        console.log('in fav item fac')
+
+        return $http.post('http://localhost:3000/selling/favorite', like);
+      },
+
+      buyItemNow: function(buy){
+        console.log('in buy now item fac')
+        return $http.post('http://localhost:3000/selling/buyNow', buy);
+      }
 
     };
 

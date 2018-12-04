@@ -7,6 +7,7 @@
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.css' rel='stylesheet' />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script> -->
 
@@ -96,12 +97,19 @@
                         <li><a class="dropdown-item" href="#" id = "lw" ng-click ="setLocation('Library West')">Library West</a></li>
                         <li><a class="dropdown-item" href="#" id = "sw" ng-click ="setLocation('Southwest Rec')">Southwest Rec</a></li>
                                             
-                    </div>
+                    </div>                
                 </div>
                 <br />
                 <br />
-
                 
+                <div class="form-group">
+                    <label for="file">Profile Picture </label>
+                    <div class="custom-file mb-3">
+                        <input type="file" name="file" id="file" class="custom-file-input">
+                        <label for="file" class="custom-file-label">Choose Image     </label>
+                    </div>
+                </div>
+
             </form>
         </div>
 
@@ -134,5 +142,15 @@
             });
            
         </script>
+
+        <script>
+            $('#file').on('change', function() {
+                //get the file name
+                var fileName = $(this).val().replace("C:\\fakepath\\", "");
+                //replace the "Choose a file" label
+                $(this).next('.custom-file-label').html(fileName);
+            });
+        </script>   
+        
     </body>
 </html>
