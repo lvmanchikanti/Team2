@@ -304,7 +304,7 @@
 
     <div id="placeholder1">
       <div class="row">
-        <div ng-repeat="items in sellingItems | orderBy: title | filter: itemSearch | filter: itemSearchBar" ng-click="getCurrentItem(items)">
+        <div id="spacing" ng-repeat="items in sellingItems | orderBy: title | filter: itemSearch | filter: itemSearchBar" ng-click="getCurrentItem(items)">
           <div class="w3-col l3 s6">
             <div class="w3-container">
               <div class="w3-display-container">
@@ -324,30 +324,32 @@
       </div>
     </div>
 
-      <div class="row demo-placeholder" id="placeholder2" >
-        <div ng-repeat="items in buyingItems | orderBy: title | filter: itemSearch | filter: itemSearchBar" ng-click="getCurrentItem(items)">
+    <div id="placeholder2">
+        <div class="row">
+          <div id="spacing" ng-repeat="items in buyingItems | orderBy: title | filter: itemSearch | filter: itemSearchBar" ng-click="getCurrentItem(items)">
             <div class="w3-col l3 s6">
               <div class="w3-container">
-                  <div class="w3-display-container">
-                      <div class="card" style="width:150px">
-                          <a href="/js/html/newListing.html">
-                            <img class="card-img-top" src="../images/add-item-icon.png" alt="Card image" style="width:100%">
-                            <div class="card-body">
-                              <h4 class="card-title">{{items.title}}</h4>
-                              <p class="card-text" >${{items.price}}</p>
-                            </div>
-                          </a>
-                      </div>
+                <div class="w3-display-container">
+                  <div class="card" style="width:150px">
+                      <a href="/js/html/newListing.html">
+                        <img class="card-img-top" src="../images/add-item-icon.png" alt="Card image" style="width:100%">
+                        <div class="card-body">
+                          <h4 class="card-title">{{items.title}}</h4>
+                          <p class="card-text" >${{items.price}}</p>
+                        </div>
+                      </a>
                   </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
 
         <div ng-controller="accountController">
           <div class="row demo-placeholder" id="placeholder3">
             <h1>Selling Items</h1>
-            <div ng-repeat="items in sellingItems | orderBy: title | filter: currentuser.email | filter: itemSearch | filter: itemSearchBar" ng-click="getCurrentItem(items)">
+            <div id="spacing" ng-repeat="items in sellingItems | orderBy: title | filter: currentuser.email | filter: itemSearch | filter: itemSearchBar" ng-click="getCurrentItem(items)">
               <div class="w3-col l3 s6">
                 <div class="w3-container">
                   <div class="w3-display-container">
@@ -368,7 +370,7 @@
 
           <div class="row demo-placeholder" id="placeholder4" >
             <h1>Buying Items</h1>
-            <div ng-repeat="items in buyingItems | orderBy: title | filter: currentuser.email | filter: itemSearch | filter: itemSearchBar" ng-click="getCurrentItem(items)">
+            <div id="spacing" ng-repeat="items in buyingItems | orderBy: title | filter: currentuser.email | filter: itemSearch | filter: itemSearchBar" ng-click="getCurrentItem(items)">
               <div class="w3-col l3 s6">
                 <div class="w3-container">
                   <div class="w3-display-container">
@@ -387,13 +389,13 @@
             </div>
           </div>
 
-        <div class="row demo-placeholder" id="placeholder5">
-            <h1>my orders</h1>
-
-          <div ng-repeat="items in userOrders | orderBy: title | filter: itemSearch | filter: itemSearchBar" ng-click="getCurrentItem(items)">
-              <div class="w3-col l3 s6">
-                <div class="w3-container">
-                    <div class="w3-display-container">
+          <div id="placeholder5">
+            <h1>My Orders</h1>
+              <div class="row">
+                <div id="spacing" ng-repeat="items in userOrders | orderBy: title | filter: itemSearch | filter: itemSearchBar" ng-click="getCurrentItem(items)">
+                  <div class="w3-col l3 s6">
+                    <div class="w3-container">
+                      <div class="w3-display-container">
                         <div class="card" style="width:150px">
                             <a href="/js/html/newListing.html">
                               <img class="card-img-top" src="../images/add-item-icon.png" alt="Card image" style="width:100%">
@@ -403,18 +405,20 @@
                               </div>
                             </a>
                         </div>
+                      </div>
                     </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div class="row demo-placeholder" id="placeholder6">
-            <h1>favorites</h1>
-            <div ng-repeat="x in favs | orderBy: title | filter: itemSearch | filter: itemSearchBar" ng-click="getCurrentItem(x)">
-                <div class="w3-col l3 s6">
-                  <div class="w3-container">
-                      <div class="w3-display-container">
+            <div id="placeholder6">
+              <h1>My Favorites</h1>
+                <div class="row">
+                  <div id="spacing" ng-repeat="x in favs| orderBy: title | filter: itemSearch | filter: itemSearchBar" ng-click="getCurrentItem(items)">
+                    <div class="w3-col l3 s6">
+                      <div class="w3-container">
+                        <div class="w3-display-container">
                           <div class="card" style="width:150px">
                               <a href="/js/html/newListing.html">
                                 <img class="card-img-top" src="../images/add-item-icon.png" alt="Card image" style="width:100%">
@@ -424,11 +428,13 @@
                                 </div>
                               </a>
                           </div>
+                        </div>
                       </div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+
       </div>
     </div>
     

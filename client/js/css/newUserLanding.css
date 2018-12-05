@@ -25,6 +25,10 @@
   margin-right: 70px;
 }
 
+#spacing {
+  padding: 40px;
+}
+
 ul {
   list-style-type: none;
   margin: 0;
