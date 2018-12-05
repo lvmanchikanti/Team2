@@ -62,7 +62,6 @@ angular.module('user').controller('signupController', ['$scope','userFactory',
                 else if (res.status === 200)
                 {
                     console.log('signup was success, front end');
-
                     window.location.replace('../html/signup2.html');
                 }
                $scope.newUser = {};

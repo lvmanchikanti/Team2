@@ -3,8 +3,6 @@ var mongoose = require('mongoose');
 var User = require('../models/userServerModel.js');
 var bcrypt = require('bcryptjs');
 var flash = require('express-flash');
-// var nev = require('email-verification')(mongoose);
-// var randtoken = require('rand-token');
 var nodemailer = require('nodemailer');
 
 // var body = require('body-parser');

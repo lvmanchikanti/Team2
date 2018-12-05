@@ -78,8 +78,10 @@ app.controller('loginController', ['$rootScope', '$scope', 'Flash', '$timeout', 
                 setTimeout(function(){
                   if($scope.returnUser.role === "admin") {
                     window.location.replace('../html/adminLanding.html');
-                  } else {
-                    window.location.replace('../html/userLanding.html');
+                  }
+                  else{
+                      console.log('check')
+                    window.location.replace('js/html/userLanding.html');
                   }
                 }, 500);
             }
@@ -106,7 +108,7 @@ app.controller('loginController', ['$rootScope', '$scope', 'Flash', '$timeout', 
             if(res.status === 400)
                 console.log("something went wrong");
             else
-                window.location.replace('../html/login.html');
+                window.location.replace('../index.html');
         })
     }
     $scope.info = function() {
