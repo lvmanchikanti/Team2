@@ -190,7 +190,6 @@
                       <div class="col-xs-12">
                           <input id="acctBtn" type="submit" class="btn btn-info" ng-click="update()" value="Update">
                           <input id="acctBtn" type="submit" class="btn btn-info" ng-click="delete()" value="Delete">
-                          <a href="userLanding.html"><input id="acctBtn" type="submit" class="btn btn-info"  value="Cancel"></a>
                       </div>
                     </div>
                       </div>
@@ -347,8 +346,7 @@
       </div>
 
         <div ng-controller="accountController">
-          <div class="row demo-placeholder" id="placeholder3">
-            <h1>Selling Items</h1>
+          <div id="placeholder3">
             <div id="spacing" ng-repeat="items in sellingItems | orderBy: title | filter: currentuser.email | filter: itemSearch | filter: itemSearchBar" ng-click="getCurrentItem(items)">
               <div class="w3-col l3 s6">
                 <div class="w3-container">
@@ -369,7 +367,6 @@
           </div>
 
           <div class="row demo-placeholder" id="placeholder4" >
-            <h1>Buying Items</h1>
             <div id="spacing" ng-repeat="items in buyingItems | orderBy: title | filter: currentuser.email | filter: itemSearch | filter: itemSearchBar" ng-click="getCurrentItem(items)">
               <div class="w3-col l3 s6">
                 <div class="w3-container">
@@ -388,9 +385,10 @@
               </div>
             </div>
           </div>
+      </div>
+
 
           <div id="placeholder5">
-            <h1>My Orders</h1>
               <div class="row">
                 <div id="spacing" ng-repeat="items in userOrders | orderBy: title | filter: itemSearch | filter: itemSearchBar" ng-click="getCurrentItem(items)">
                   <div class="w3-col l3 s6">
@@ -413,7 +411,6 @@
             </div>
 
             <div id="placeholder6">
-              <h1>My Favorites</h1>
                 <div class="row">
                   <div id="spacing" ng-repeat="x in favs| orderBy: title | filter: itemSearch | filter: itemSearchBar" ng-click="getCurrentItem(items)">
                     <div class="w3-col l3 s6">
@@ -435,7 +432,6 @@
                 </div>
               </div>
 
-      </div>
     </div>
     
     <script>
